@@ -1,6 +1,6 @@
 {
   "name": "acute-care-horizons",
-  "homepage": "https://acutecarehorizons.github.io/acutecarehorizons.github.io",
+  "homepage": "https://www.acutecarehorizons.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html && cp CNAME build/CNAME",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

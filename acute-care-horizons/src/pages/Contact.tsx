@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
     <Box>
       <Box
         sx={{
-          backgroundImage: 'linear-gradient(rgba(36,103,141,0.45), rgba(36,103,141,0.45)), url(/images/horizon-bg.png)',
+          backgroundImage: 'linear-gradient(rgba(36,103,141,0.45), rgba(36,103,141,0.45)), url(/images/horizon-bg-jpg.jpg)',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',

@@ -15,7 +15,10 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Select,
+  MenuItem,
   useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import { 
   Launch as LaunchIcon, 
@@ -26,8 +29,9 @@ import {
 import { books, Book } from '../data/books';
 
 const Books: React.FC = () => {
-  const theme = useTheme();
   const [selectedTab, setSelectedTab] = useState(0);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
@@ -71,7 +75,7 @@ const Books: React.FC = () => {
       {/* Page Header */}
       <Box
         sx={{
-          backgroundImage: 'linear-gradient(rgba(36,103,141,0.45), rgba(36,103,141,0.45)), url(/images/horizon-bg.png)',
+          backgroundImage: 'linear-gradient(rgba(36,103,141,0.45), rgba(36,103,141,0.45)), url(/images/horizon-bg-jpg.jpg)',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
@@ -113,13 +117,43 @@ const Books: React.FC = () => {
       </Box>
 
       <Container maxWidth="lg" sx={{ py: 6 }}>
-        {/* Filter Tabs */}
+        {/* Filter Tabs or Dropdown */}
         <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
-          <Tabs value={selectedTab} onChange={handleTabChange} centered>
-            <Tab label="All Books" />
-            <Tab label="For Nurse Practitioners" />
-            <Tab label="For Physician Assistants" />
-          </Tabs>
+          {isMobile ? (
+            <Select
+              value={selectedTab}
+              onChange={e => setSelectedTab(Number(e.target.value))}
+              fullWidth
+              size="small"
+              sx={{ maxWidth: 340, mx: 'auto', my: 2, bgcolor: 'white' }}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Book category filter' }}
+            >
+              <MenuItem value={0}>All Books</MenuItem>
+              <MenuItem value={1}>For Nurse Practitioners</MenuItem>
+              <MenuItem value={2}>For Physician Assistants</MenuItem>
+            </Select>
+          ) : (
+            <Tabs
+              value={selectedTab}
+              onChange={handleTabChange}
+              centered
+              aria-label="book category tabs"
+              sx={{
+                minHeight: 48,
+                '.MuiTab-root': {
+                  fontSize: { xs: '0.95rem', md: '1.1rem' },
+                  minHeight: 48,
+                  px: { xs: 1.5, md: 3 },
+                  py: { xs: 1, md: 1.5 },
+                },
+              }}
+            >
+              <Tab label="All Books" />
+              <Tab label="For Nurse Practitioners" />
+              <Tab label="For Physician Assistants" />
+            </Tabs>
+          )}
         </Box>
 
         {/* Books Grid */}
