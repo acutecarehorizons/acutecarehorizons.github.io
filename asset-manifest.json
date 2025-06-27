@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/acutecarehorizons.github.io/static/css/main.e6c13ad2.css",
+    "main.js": "/acutecarehorizons.github.io/static/js/main.f9e36523.js",
+    "static/js/453.960aa124.chunk.js": "/acutecarehorizons.github.io/static/js/453.960aa124.chunk.js",
+    "index.html": "/acutecarehorizons.github.io/index.html",
+    "main.e6c13ad2.css.map": "/acutecarehorizons.github.io/static/css/main.e6c13ad2.css.map",
+    "main.f9e36523.js.map": "/acutecarehorizons.github.io/static/js/main.f9e36523.js.map",
+    "453.960aa124.chunk.js.map": "/acutecarehorizons.github.io/static/js/453.960aa124.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.f9e36523.js"
+  ]
+}
