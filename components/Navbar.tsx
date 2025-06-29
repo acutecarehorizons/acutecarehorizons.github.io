@@ -15,11 +15,13 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const router = useRouter();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -48,8 +50,8 @@ const Navbar: React.FC = () => {
             passHref
             onClick={handleDrawerToggle}
             sx={{
-              color: item.path === '/books' ? theme.palette.primary.main : 'inherit',
-              textDecoration: 'none',
+              color: router.pathname === item.path ? theme.palette.primary.main : 'inherit',
+              textDecoration: router.pathname === item.path ? 'underline' : 'none',
             }}
           >
             <ListItemText primary={item.label} />
@@ -112,7 +114,8 @@ const Navbar: React.FC = () => {
                   color="inherit"
                   sx={{
                     mx: 1,
-                    color: item.path === '/books' ? theme.palette.secondary.main : 'inherit',
+                    color: router.pathname === item.path ? theme.palette.secondary.main : 'inherit',
+                    fontWeight: router.pathname === item.path ? 700 : 400,
                     '&:hover': {
                       backgroundColor: 'rgba(255, 255, 255, 0.1)',
                     },
