@@ -71,6 +71,7 @@ const Books: React.FC = () => {
     if (bookQuery) {
       setSelectedFilter('book');
       setSelectedBookId(bookQuery as string);
+      setExpandedDesc(bookQuery as string);
     }
   }, [bookQuery]);
 
@@ -271,16 +272,16 @@ const Books: React.FC = () => {
                     paragraph
                     sx={{
                       display: '-webkit-box',
-                      WebkitLineClamp: expandedDesc === book.id ? 'none' : 3,
+                      WebkitLineClamp: (selectedFilter === 'book' || expandedDesc === book.id) ? 'none' : 3,
                       WebkitBoxOrient: 'vertical',
-                      overflow: expandedDesc === book.id ? 'visible' : 'hidden',
+                      overflow: (selectedFilter === 'book' || expandedDesc === book.id) ? 'visible' : 'hidden',
                       textOverflow: 'ellipsis',
-                      minHeight: '4.5em', // Ensures consistent height for 3 lines
+                      minHeight: selectedFilter === 'book' ? 'auto' : '4.5em', // Ensures consistent height for 3 lines
                     }}
                   >
                     {book.description}
                   </Typography>
-                  {book.description.length > 120 && (
+                  {book.description.length > 120 && selectedFilter !== 'book' && (
                     <Button
                       size="small"
                       color="primary"
