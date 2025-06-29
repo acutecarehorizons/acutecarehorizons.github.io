@@ -14,9 +14,9 @@ const theme = createTheme({
       dark: '#24678d',
     },
     secondary: {
-      main: '#ff8400',
-      light: '#ffab40',
-      dark: '#e97901',
+      main: '#3387a2',
+      light: '#5ba0b7',
+      dark: '#24678d',
     },
     background: {
       default: '#fafafa',
@@ -25,6 +25,11 @@ const theme = createTheme({
     text: {
       primary: '#333333',
       secondary: '#666666',
+    },
+    amazon: {
+      main: '#ff8400',
+      light: '#ffab40',
+      dark: '#e97901',
     },
   },
   typography: {

@@ -13,6 +13,10 @@ import {
   useTheme,
   Alert,
   keyframes,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 import NextLink from 'next/link';
 import { Launch as LaunchIcon, MenuBook as BookIcon } from '@mui/icons-material';
@@ -105,70 +109,33 @@ const Home: React.FC = () => {
               View Our Books
             </Button>
             <Button
-              variant="outlined"
-              size="large"
-              startIcon={<LaunchIcon />}
-              sx={{
-                borderColor: 'white',
-                color: 'white',
-                py: 2,
-                px: 4,
-                fontSize: '1.1rem',
-                '&:hover': {
-                  borderColor: 'white',
-                  bgcolor: 'rgba(255, 255, 255, 0.1)',
-                },
-              }}
-              href="https://www.amazon.com/s?k=acute+care+protocols+6th+edition+Donald+Correll&i=stripbooks"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Shop on Amazon
-            </Button>
+                  variant="contained"
+                  color="secondary"
+                  href="https://www.amazon.com/s?k=facep+%22Donald+Correll%22&i=stripbooks&crid=1BZ63E10N2YII&sprefix=facep+donald+correll+%2Cstripbooks%2C424&ref=nb_sb_noss"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="large"
+                  sx={{  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
+                >
+                  <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 32, width: 'auto', display: 'block'}} />
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  href="https://play.google.com/store/search?q=%22donald%20correll%22%20facep&c=books&hl=en_US"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="large"
+                  sx={{ minWidth: 0, p: 0, height: 64, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                >
+                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 66, width: 'auto', display: 'block' }} />
+                </Button>
           </Box>
         </Container>
       </Box>
 
-      {/* 6th Edition Announcement */}
-      <Container maxWidth="md" sx={{ my: 4 }}>
-        <Alert
-          icon={false}
-          severity="success"
-          sx={{
-            borderRadius: 3,
-            boxShadow: '0 2px 16px 0 rgba(51,135,162,0.10)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: { xs: '1rem', md: '1.15rem' },
-            py: { xs: 2, md: 2 },
-            px: { xs: 2, md: 4 },
-            background: 'linear-gradient(270deg,rgb(122, 207, 235),rgb(118, 157, 195), #b3e5fc)',
-            backgroundSize: '400% 400%',
-            animation: `${gradientMove} 16s ease-in-out infinite`,
-            color: '#000',
-            fontWeight: 500,
-            textAlign: 'center',
-          }}
-          iconMapping={{}}
-        >
-          6th Edition Books Available!{' '}
-          <Button
-            href="https://www.amazon.com/s?k=acute+care+protocols+6th+edition+Donald+Correll&i=stripbooks"
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="contained"
-            color="secondary"
-            size="small"
-            sx={{ ml: 2, fontWeight: 600, borderRadius: 2 }}
-          >
-            Shop on Amazon
-          </Button>
-        </Alert>
-      </Container>
-
       {/* Featured Books */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
         <Typography
           variant="h2"
           component="h2"
@@ -179,7 +146,7 @@ const Home: React.FC = () => {
             fontWeight: 400,
           }}
         >
-          Acute Care Protocols
+          Acute Care Horizons Books
         </Typography>
 
         <Box
@@ -187,12 +154,13 @@ const Home: React.FC = () => {
             display: 'grid',
             gridTemplateColumns: {
               xs: '1fr',
-              md: 'repeat(3, 1fr)',
+              md: 'repeat(2, 1fr)',
+              lg: 'repeat(4, 1fr)',
             },
             gap: 4,
           }}
         >
-          {books.map((book) => (
+          {books.filter(book => book.edition === '2025').map((book) => (
             <Card
               key={book.id}
               sx={{
@@ -224,22 +192,29 @@ const Home: React.FC = () => {
                 <Typography variant="subtitle1" color="primary" gutterBottom>
                   {book.subtitle}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  {book.description}
-                </Typography>
+                <List dense sx={{ py: 0 }}>
+                  {book.features.map((feature, index) => (
+                    <ListItem key={index} sx={{ py: 0, px: 0 }}>
+                      <ListItemIcon sx={{ minWidth: 36 }}>
+                        <LaunchIcon color="primary" fontSize="small" />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={feature}
+                        primaryTypographyProps={{ variant: 'body2' }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
               </CardContent>
               <CardActions sx={{ p: 2, pt: 0 }}>
                 <Button
                   variant="contained"
                   color="secondary"
-                  startIcon={<LaunchIcon />}
-                  href={book.amazonUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/books?book=${book.id}`}
                   fullWidth
                   sx={{ py: 1.5 }}
                 >
-                  Buy on Amazon
+                  View Details
                 </Button>
               </CardActions>
             </Card>

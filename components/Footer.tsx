@@ -39,19 +39,6 @@ const Footer: React.FC = () => {
               <br />
               for Nurse Practitioners and Physician Assistants.
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              6th Edition Books Available at{' '}
-              <Link
-                href="https://www.amazon.com/s?k=acute+care+protocols+6th+edition+Donald+Correll&i=stripbooks&s=date-desc-rank&ds=v1%3Acq3BPCh%2Fu4mjKy0%2Bf5y6gJf3kTtz8aZaxZjVxi5Rkfs&crid=ECA65RZFP1SI&qid=1675627436&sprefix=acute+care+protocols+6th+edition+donald+correl%2Cstripbooks%2C175&ref=sr_st_date-desc-rank"
-                color="primary"
-                sx={{ fontWeight: 500 }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Amazon
-              </Link>{' '}
-              and other retailers.
-            </Typography>
           </Box>
 
           <Box>

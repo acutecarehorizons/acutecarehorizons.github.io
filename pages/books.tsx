@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -25,28 +25,54 @@ import {
   CheckCircle as CheckIcon,
   School as SchoolIcon,
   LocalHospital as HospitalIcon,
+  ArrowBack as ArrowBackIcon,
 } from '@mui/icons-material';
 import { books, Book } from '../src/data/books';
+import { useRouter } from 'next/router';
 
 const Books: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const router = useRouter();
+  const { book: bookQuery } = router.query;
+  const [selectedFilter, setSelectedFilter] = useState(bookQuery ? 'book' : '2025');
+  const [selectedBookId, setSelectedBookId] = useState(bookQuery || '');
+  const [expandedDesc, setExpandedDesc] = useState<string | null>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setSelectedTab(newValue);
+  const handleFilterChange = (event: any) => {
+    const value = event.target.value as string;
+    setSelectedFilter(value);
+    setSelectedBookId('');
+    if (value === '2025' || value === 'pa' || value === 'np' || value === '6th') {
+      router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
+    }
   };
 
   const filteredBooks = () => {
-    switch (selectedTab) {
-      case 1:
-        return books.filter(book => book.targetAudience === 'nurse-practitioners');
-      case 2:
-        return books.filter(book => book.targetAudience === 'physician-assistants');
-      default:
-        return books;
+    if (selectedFilter === 'book' && selectedBookId) {
+      return books.filter(book => book.id === selectedBookId);
     }
+    if (selectedFilter === '2025') {
+      return books.filter(book => book.edition === '2025');
+    }
+    if (selectedFilter === 'pa') {
+      return books.filter(book => book.targetAudience === 'physician-assistants');
+    }
+    if (selectedFilter === 'np') {
+      return books.filter(book => book.targetAudience === 'nurse-practitioners');
+    }
+    if (selectedFilter === '6th') {
+      return books.filter(book => book.edition === '6th');
+    }
+    return books;
   };
+
+  useEffect(() => {
+    if (bookQuery) {
+      setSelectedFilter('book');
+      setSelectedBookId(bookQuery as string);
+    }
+  }, [bookQuery]);
 
   const getAudienceIcon = (audience: string) => {
     switch (audience) {
@@ -116,43 +142,40 @@ const Books: React.FC = () => {
         </Container>
       </Box>
 
-      <Container maxWidth="lg" sx={{ py: 6 }}>
+      <Box sx={{ py: 6, px: { xs: 2, sm: 4, md: 8 } }}>
         {/* Filter Tabs or Dropdown */}
         <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
-          {isMobile ? (
+          {selectedFilter === 'book' ? (
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 0 }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                startIcon={<ArrowBackIcon />}
+                onClick={() => {
+                  setSelectedFilter('2025');
+                  setSelectedBookId('');
+                  router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
+                }}
+                sx={{ maxWidth: 340, my: 2, bgcolor: 'white' }}
+              >
+                Back to all books
+              </Button>
+            </Box>
+          ) : (
             <Select
-              value={selectedTab}
-              onChange={e => setSelectedTab(Number(e.target.value))}
+              value={selectedFilter}
+              onChange={handleFilterChange}
               fullWidth
               size="small"
               sx={{ maxWidth: 340, mx: 'auto', my: 2, bgcolor: 'white' }}
               displayEmpty
-              inputProps={{ 'aria-label': 'Book category filter' }}
+              inputProps={{ 'aria-label': 'Book filter' }}
             >
-              <MenuItem value={0}>All Books</MenuItem>
-              <MenuItem value={1}>For Nurse Practitioners</MenuItem>
-              <MenuItem value={2}>For Physician Assistants</MenuItem>
+              <MenuItem value={'2025'}>2025 Editions (New)</MenuItem>
+              <MenuItem value={'pa'}>Physician Assistant Books</MenuItem>
+              <MenuItem value={'np'}>Nurse Practitioner Books</MenuItem>
+              <MenuItem value={'6th'}>6th Editions (Legacy)</MenuItem>
             </Select>
-          ) : (
-            <Tabs
-              value={selectedTab}
-              onChange={handleTabChange}
-              centered
-              aria-label="book category tabs"
-              sx={{
-                minHeight: 48,
-                '.MuiTab-root': {
-                  fontSize: { xs: '0.95rem', md: '1.1rem' },
-                  minHeight: 48,
-                  px: { xs: 1.5, md: 3 },
-                  py: { xs: 1, md: 1.5 },
-                },
-              }}
-            >
-              <Tab label="All Books" />
-              <Tab label="For Nurse Practitioners" />
-              <Tab label="For Physician Assistants" />
-            </Tabs>
           )}
         </Box>
 
@@ -162,7 +185,8 @@ const Books: React.FC = () => {
             display: 'grid',
             gridTemplateColumns: {
               xs: '1fr',
-              lg: 'repeat(2, 1fr)',
+              md: 'repeat(2, 1fr)',
+              lg: 'repeat(3, 1fr)',
             },
             gap: 4,
           }}
@@ -170,92 +194,148 @@ const Books: React.FC = () => {
           {filteredBooks().map((book: Book) => (
             <Card
               key={book.id}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                '&:hover': {
+                  transform: 'translateY(-4px)',
+                  boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
                 sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', md: 'row' },
-                  height: '100%',
-                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
-                  },
+                  width: '100%',
+                  height: 300,
+                  objectFit: 'contain',
+                  bgcolor: '#fff',
+                  p: 2,
                 }}
-              >
-                <CardMedia
-                  component="img"
-                  sx={{
-                    width: { xs: '100%', md: 200 },
-                    height: { xs: 300, md: '100%' },
-                    objectFit: 'contain',
-                    bgcolor: '#fff',
-                    p: 2,
-                  }}
-                  image={book.coverImage}
-                  alt={book.title}
-                />
-                <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <Chip
-                        icon={getAudienceIcon(book.targetAudience)}
-                        label={getAudienceLabel(book.targetAudience)}
-                        color="primary"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <Chip
-                        label={book.edition}
-                        color="secondary"
-                        size="small"
-                        sx={{ ml: 1 }}
-                      />
-                    </Box>
-                    
-                    <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 500 }}>
-                      {book.title}
-                    </Typography>
-                    <Typography variant="h6" color="primary" gutterBottom>
-                      {book.subtitle}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary" paragraph>
-                      {book.description}
-                    </Typography>
-
-                    <Typography variant="h6" component="h4" gutterBottom sx={{ mt: 2, fontWeight: 500 }}>
-                      Key Features:
-                    </Typography>
-                    <List dense sx={{ py: 0 }}>
-                      {book.features.map((feature, index) => (
-                        <ListItem key={index} sx={{ py: 0, px: 0 }}>
-                          <ListItemIcon sx={{ minWidth: 36 }}>
-                            <CheckIcon color="primary" fontSize="small" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={feature}
-                            primaryTypographyProps={{ variant: 'body2' }}
-                          />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </CardContent>
-                  
-                  <CardActions sx={{ p: 3, pt: 0 }}>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      startIcon={<LaunchIcon />}
-                      href={book.amazonUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      size="large"
-                      fullWidth
-                      sx={{ py: 1.5 }}
-                    >
-                      Buy on Amazon
-                    </Button>
-                  </CardActions>
+                image={book.coverImage}
+                alt={book.title}
+              />
+              <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', p: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <Chip
+                    icon={getAudienceIcon(book.targetAudience)}
+                    label={getAudienceLabel(book.targetAudience)}
+                    color="primary"
+                    variant="outlined"
+                    size="small"
+                  />
+                  <Chip
+                    label={book.edition}
+                    color="secondary"
+                    size="small"
+                    sx={{ ml: 1 }}
+                  />
                 </Box>
-              </Card>
+                
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  gutterBottom
+                  sx={{
+                    fontWeight: 500,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    minHeight: '3.6em',
+                  }}
+                >
+                  {book.title}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="primary"
+                  gutterBottom
+                  sx={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    minHeight: '2.4em',
+                  }}
+                >
+                  {book.subtitle}
+                </Typography>
+                <Box sx={{ position: 'relative', mb: 1 }}>
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    paragraph
+                    sx={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: expandedDesc === book.id ? 'none' : 3,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: expandedDesc === book.id ? 'visible' : 'hidden',
+                      textOverflow: 'ellipsis',
+                      minHeight: '4.5em', // Ensures consistent height for 3 lines
+                    }}
+                  >
+                    {book.description}
+                  </Typography>
+                  {book.description.length > 120 && (
+                    <Button
+                      size="small"
+                      color="primary"
+                      sx={{ mt: 0, px: 0, minWidth: 0, textTransform: 'none' }}
+                      onClick={() => setExpandedDesc(expandedDesc === book.id ? null : book.id)}
+                    >
+                      {expandedDesc === book.id ? 'Show less' : 'Show more'}
+                    </Button>
+                  )}
+                </Box>
+
+                <Typography variant="h6" component="h4" gutterBottom sx={{ mt: 2, fontWeight: 500 }}>
+                  Key Features:
+                </Typography>
+                <List dense sx={{ py: 0 }}>
+                  {book.features.map((feature, index) => (
+                    <ListItem key={index} sx={{ py: 0, px: 0 }}>
+                      <ListItemIcon sx={{ minWidth: 36 }}>
+                        <CheckIcon color="primary" fontSize="small" />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={feature}
+                        primaryTypographyProps={{ variant: 'body2' }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </CardContent>
+              
+              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', justifyContent: 'center', gap: 2 }}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  href={book.amazonUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="large"
+                  sx={{  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
+                >
+                  <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 32, width: 'auto', display: 'block'}} />
+                </Button>
+                {book.googlePlayUrl && (
+                  <Button
+                    variant="outlined"
+                    color="inherit"
+                    href={book.googlePlayUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    size="large"
+                    sx={{  minWidth: 0, height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'white', border: 'none' }}
+                  >
+                    <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 55, width: 'auto', display: 'block' }} />
+                  </Button>
+                )}
+              </CardActions>
+            </Card>
           ))}
         </Box>
 
@@ -272,7 +352,7 @@ const Books: React.FC = () => {
             </em>
           </Typography>
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 };

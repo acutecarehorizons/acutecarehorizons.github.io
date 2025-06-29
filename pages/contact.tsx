@@ -3,11 +3,10 @@ import {
   Box,
   Container,
   Typography,
-  Button,
   Paper,
   useTheme,
 } from '@mui/material';
-import { Launch as LaunchIcon, Email as EmailIcon } from '@mui/icons-material';
+import { Email as EmailIcon } from '@mui/icons-material';
 
 const Contact: React.FC = () => {
   const theme = useTheme();
@@ -36,7 +35,7 @@ const Contact: React.FC = () => {
               textShadow: '0 2px 8px rgba(0,0,0,0.95)',
             }}
           >
-            Contact Us
+            Contact The Author
           </Typography>
         </Container>
       </Box>
@@ -77,28 +76,6 @@ const Contact: React.FC = () => {
               </Box>
             </Box>
           </Paper>
-
-          {/* Books Purchase Section */}
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h5" paragraph>
-              Ready to enhance your clinical practice with our acute care protocols?
-            </Typography>
-            <Typography variant="body1" paragraph sx={{ mb: 4 }}>
-              Our 6th Edition books are available on Amazon and other major retailers.
-            </Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              startIcon={<LaunchIcon />}
-              href="https://www.amazon.com/s?k=acute+care+protocols+6th+edition+Donald+Correll&i=stripbooks"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ py: 2, px: 4, fontSize: '1.1rem' }}
-            >
-              Shop on Amazon
-            </Button>
-          </Box>
         </Box>
       </Container>
     </Box>
