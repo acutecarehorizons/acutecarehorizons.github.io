@@ -20,6 +20,36 @@ import NextLink from 'next/link';
 import { Launch as LaunchIcon, MenuBook as BookIcon } from '@mui/icons-material';
 import { books, testimonials } from '../src/data/books';
 
+// Helper function to get or create visitor ID
+const getOrCreateVisitorId = () => {
+  let visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) {
+    visitorId = 'v_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('visitorId', visitorId);
+  }
+  return visitorId;
+};
+
+// Helper function to track generic link clicks
+const trackGenericLink = async (linkType: 'amazon' | 'google_play', destination: string) => {
+  const visitorId = getOrCreateVisitorId();
+  const withGeo = localStorage.getItem('cookiesAccepted');
+  
+  try {
+    await fetch('/track-generic-link', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        visitorId,
+        linkType,
+        destination,
+        withGeo
+      }),
+    });
+  } catch (error) {
+    console.error('Failed to track link click:', error);
+  }
+};
 
 const Home: React.FC = () => {
   const theme = useTheme();
@@ -34,6 +64,19 @@ const Home: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle Amazon button click
+  const handleAmazonClick = async () => {
+    const destination = "https://www.amazon.com/s?k=facep+%22Donald+Correll%22&i=stripbooks&crid=1BZ63E10N2YII&sprefix=facep+donald+correll+%2Cstripbooks%2C424&ref=nb_sb_noss";
+    await trackGenericLink('amazon', destination);
+    window.open(destination, '_blank', 'noopener,noreferrer');
+  };
+
+  // Handle Google Play button click
+  const handleGooglePlayClick = async () => {
+    const destination = "https://play.google.com/store/search?q=%22donald%20correll%22%20facep&c=books&hl=en_US";
+    await trackGenericLink('google_play', destination);
+    window.open(destination, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <Box>
@@ -105,9 +148,7 @@ const Home: React.FC = () => {
             <Button
                   variant="contained"
                   color="secondary"
-                  href="https://www.amazon.com/s?k=facep+%22Donald+Correll%22&i=stripbooks&crid=1BZ63E10N2YII&sprefix=facep+donald+correll+%2Cstripbooks%2C424&ref=nb_sb_noss"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={handleAmazonClick}
                   size="large"
                   sx={{  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
                 >
@@ -116,9 +157,7 @@ const Home: React.FC = () => {
                 <Button
                   variant="outlined"
                   color="inherit"
-                  href="https://play.google.com/store/search?q=%22donald%20correll%22%20facep&c=books&hl=en_US"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={handleGooglePlayClick}
                   size="large"
                   sx={{ minWidth: 0, p: 0, height: 64, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                 >

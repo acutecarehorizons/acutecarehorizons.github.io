@@ -110,6 +110,17 @@ export default function Analytics() {
   }, []);
 
   const getBookTitle = (bookId: string) => {
+    if (bookId.startsWith('generic_')) {
+      const linkType = bookId.replace('generic_', '');
+      switch (linkType) {
+        case 'amazon':
+          return 'Generic Amazon Search';
+        case 'google_play':
+          return 'Generic Google Play Search';
+        default:
+          return `Generic ${linkType}`;
+      }
+    }
     const book = books.find(b => b.id === bookId);
     return book ? book.title : bookId;
   };
