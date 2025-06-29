@@ -1,19 +1,31 @@
 interface UpdateGeoPayload {
     visitorId: string;
     recordId: number;
-    ip: string;
 }
 
 export async function onRequestPost(context) {
   const { request, env } = context;
   const payload: UpdateGeoPayload = await request.json();
 
+  // Get IP address from headers
+  let ip = request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip') || '';
+  if (ip && ip.includes(',')) ip = ip.split(',')[0].trim();
+
   let geolocation_json: string | null = null;
 
   try {
-    const geoRes = await fetch(`https://free.freeipapi.com/api/json/${payload.ip}`);
+    const geoRes = await fetch(`https://free.freeipapi.com/api/json/${ip}`);
     if (geoRes.ok) {
-      geolocation_json = JSON.stringify(await geoRes.json());
+      const geo = await geoRes.json();
+      // Only keep minimal fields
+      const minimalGeo = {
+        latitude: geo.latitude,
+        longitude: geo.longitude,
+        countryCode: geo.countryCode,
+        cityName: geo.cityName,
+        regionName: geo.regionName
+      };
+      geolocation_json = JSON.stringify(minimalGeo);
     }
   } catch (e) {
     geolocation_json = null;

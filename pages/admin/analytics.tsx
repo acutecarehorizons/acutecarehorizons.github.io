@@ -10,7 +10,11 @@ export default function Analytics() {
   const fetchAnalytics = () => {
     setLoading(true);
     setError('');
-    fetch(`/get-analytics?days=${days}`)
+    fetch(`https://acutecarehorizons.com/get-analytics?days=${days}`, {
+      headers: {
+        'Authorization': `Basic ${btoa('admin:erdoctor1')}`
+      }
+    })
       .then(res => {
         if (!res.ok) throw new Error('Unauthorized');
         return res.json();

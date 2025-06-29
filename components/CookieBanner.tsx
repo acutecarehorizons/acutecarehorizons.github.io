@@ -8,7 +8,6 @@ async function updateGeo() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       visitorId,
-      ip: '', // Optionally leave blank; backend can use request headers
     }),
   });
 }

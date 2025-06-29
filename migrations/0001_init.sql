@@ -6,7 +6,6 @@ CREATE TABLE visitors (
 CREATE TABLE visits (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     visitor_id TEXT,
-    ip_address TEXT,
     user_agent TEXT,
     geolocation_json TEXT,
     created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
@@ -26,7 +25,6 @@ CREATE TABLE link_clicks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     visitor_id TEXT,
     link_id INTEGER,
-    ip_address TEXT,
     user_agent TEXT,
     geolocation_json TEXT,
     created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
