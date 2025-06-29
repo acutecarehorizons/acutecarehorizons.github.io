@@ -313,13 +313,13 @@ const Books: React.FC = () => {
               
               <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', justifyContent: 'space-between' }}>
                 <Button
-                  variant="contained"
+                  variant="ghost"
                   color="secondary"
                   href={`/link?bookId=${book.id}&linkType=amazon`}
                   target="_blank"
                   rel="noopener noreferrer"
                   size="large"
-                  sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
+                  sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', minWidth: 0 }}
                 >
                   <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 32, width: 'auto', display: 'block'}} />
                 </Button>

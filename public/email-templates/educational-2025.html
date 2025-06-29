@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educational Content 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #222; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 32px auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 32px 24px; }
+    .header { text-align: center; margin-bottom: 32px; background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 32px 24px; border-radius: 12px; }
+    .header h1 { font-size: 28px; margin: 0 0 8px 0; font-weight: 700; }
+    .header p { font-size: 18px; margin: 0; opacity: 0.9; }
+    .case-study { background: #f8f9fa; border-radius: 12px; margin: 24px 0; overflow: hidden; border: 2px solid #e9ecef; }
+    .case-header { background: #28a745; color: white; padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .case-header:hover { background: #218838; }
+    .case-title { font-weight: 600; font-size: 16px; }
+    .case-toggle { font-size: 20px; transition: transform 0.3s; }
+    .case-content { padding: 0; max-height: 0; overflow: hidden; transition: all 0.3s ease; }
+    .case-content.expanded { padding: 20px; max-height: 500px; }
+    .case-scenario { background: #e3f2fd; padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+    .case-question { font-weight: 600; color: #1976d2; margin-bottom: 12px; }
+    .case-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .case-option { background: white; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .case-option:hover { border-color: #28a745; background: #f8fff9; }
+    .case-option.selected { border-color: #28a745; background: #d4edda; }
+    .case-explanation { background: #fff3cd; border: 1px solid #ffeaa7; padding: 16px; border-radius: 8px; margin-top: 16px; display: none; }
+    .book-highlight { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 24px; border-radius: 12px; margin: 24px 0; }
+    .book-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 32px 0; }
+    .book-card {
+      display: flex;
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .book-image { flex: 0 0 80px; margin-right: 16px; }
+    .book-image img { width: 80px; height: auto; border-radius: 6px; border: 1px solid #e0e0e0; }
+    .book-info { flex: 1; }
+    .book-title { font-size: 14px; font-weight: 600; color: #222; margin: 0 0 4px 0; }
+    .book-subtitle { font-size: 12px; color: #3387a2; margin: 0 0 6px 0; }
+    .book-audience { font-size: 10px; color: #3387a2; border: 1px solid #3387a2; border-radius: 12px; padding: 2px 8px; display: inline-block; margin-bottom: 6px; }
+    .book-links { margin-top: 6px; display: flex; gap: 8px; }
+    .amazon-btn img, .google-btn img { height: 20px; width: auto; display: inline-block; vertical-align: middle; }
+    .google-btn { padding: 0; background: transparent; border: none; cursor: pointer; }
+    .stats-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    .stat-card { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border-left: 4px solid #28a745; }
+    .stat-number { font-size: 32px; font-weight: 700; color: #28a745; display: block; }
+    .stat-label { font-size: 14px; color: #666; margin-top: 4px; }
+    .footer { text-align: center; color: #888; font-size: 12px; margin-top: 40px; }
+    @media (max-width: 600px) {
+      .container { padding: 16px; margin: 16px; }
+      .stats-section { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🧠 Educational Excellence</h1>
+      <p>Interactive learning with evidence-based protocols</p>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <span class="stat-number">290+</span>
+        <span class="stat-label">Protocols</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">2025</span>
+        <span class="stat-label">Latest Edition</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">Evidence-Based</span>
+      </div>
+    </div>
+
+    <div class="case-study">
+      <div class="case-header" onclick="toggleCase(this)">
+        <span class="case-title">📋 Case Study 1: Acute Chest Pain</span>
+        <span class="case-toggle">+</span>
+      </div>
+      <div class="case-content">
+        <div class="case-scenario">
+          <div class="case-question">A 45-year-old male presents to the ED with acute chest pain. What's your first step?</div>
+          <div class="case-options">
+            <div class="case-option" onclick="selectCaseOption(this, 'A')">A) Order a chest X-ray</div>
+            <div class="case-option" onclick="selectCaseOption(this, 'B')">B) Perform an ECG immediately</div>
+            <div class="case-option" onclick="selectCaseOption(this, 'C')">C) Administer aspirin</div>
+            <div class="case-option" onclick="selectCaseOption(this, 'D')">D) All of the above</div>
+          </div>
+          <div class="case-explanation" id="explanation-1">
+            <strong>Correct Answer: D</strong><br>
+            Our acute care protocols provide step-by-step guidance for chest pain evaluation, including immediate ECG, aspirin administration, and appropriate imaging based on clinical presentation.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-study">
+      <div class="case-header" onclick="toggleCase(this)">
+        <span class="case-title">👶 Case Study 2: Pediatric Fever</span>
+        <span class="case-toggle">+</span>
+      </div>
+      <div class="case-content">
+        <div class="case-scenario">
+          <div class="case-question">A 2-year-old presents with fever of 103°F. What's your assessment priority?</div>
+          <div class="case-options">
+            <div class="case-option" onclick="selectCaseOption(this, 'A')">A) Check for rash</div>
+            <div class="case-option" onclick="selectCaseOption(this, 'B')">B) Assess mental status</div>
+            <div class="case-option" onclick="selectCaseOption(this, 'C')">C) Look for signs of dehydration</div>
+            <div class="case-option" onclick="selectCaseOption(this, 'D')">D) All of the above</div>
+          </div>
+          <div class="case-explanation" id="explanation-2">
+            <strong>Correct Answer: D</strong><br>
+            Our pediatric protocols emphasize comprehensive assessment including mental status, hydration status, and rash evaluation for febrile children.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-highlight">
+      <h2 style="text-align:center;margin:0 0 20px 0;">📚 Your Learning Resources</h2>
+      <div class="book-grid">
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/np-acp-dm-2025.jpg" alt="Nurse Practitioner Acute Care Protocols and Disease Management">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Nurse Practitioner Acute Care Protocols and Disease Management</div>
+            <div class="book-subtitle">For Emergency Departments, Urgent Care Centers and Family Practices</div>
+            <div class="book-audience">Nurse Practitioners</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=np-acp-dm-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/np-pg-2025.jpg" alt="Nurse Practitioner Guide">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Nurse Practitioner Guide</div>
+            <div class="book-subtitle">For Emergency Departments, Urgent Care Centers, and Family Practices</div>
+            <div class="book-audience">Nurse Practitioners</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=np-guide-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+              <a href="https://acutecarrehorizons.com/link?bookId=np-guide-2025&linkType=google" target="_blank" class="google-btn">
+                <img src="https://acutecarehorizons.com/images/google-play-badge.png" alt="Get it on Google Play">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/pa-acp-dm-2025.jpg" alt="Physician Assistant Acute Care Protocols and Disease Management">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Physician Assistant Acute Care Protocols and Disease Management</div>
+            <div class="book-subtitle">Physician Assistant Acute Care Protocols and Disease Management</div>
+            <div class="book-audience">Physician Assistants</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=pa-acp-dm-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin:32px 0;">
+      <h2 style="color:#333;margin-bottom:16px;">🎯 Why Our Protocols Work</h2>
+      <ul style="text-align:left;font-size:16px;line-height:1.6;color:#555;">
+        <li>✅ <strong>Evidence-Based:</strong> Latest clinical guidelines and research</li>
+        <li>✅ <strong>Quick Reference:</strong> Bulleted format for fast scanning</li>
+        <li>✅ <strong>Comprehensive:</strong> Covers all major acute care scenarios</li>
+        <li>✅ <strong>Portable:</strong> Available on your device 24/7</li>
+        <li>✅ <strong>Updated:</strong> 2025 edition with latest protocols</li>
+      </ul>
+      
+      <a href="https://acutecarrehorizons.com/books" style="background:linear-gradient(135deg,#28a745,#20c997);color:white;padding:16px 32px;border-radius:8px;font-size:18px;font-weight:600;text-decoration:none;display:inline-block;margin-top:24px;">
+        📚 Explore Our Protocols
+      </a>
+    </div>
+
+    <div class="footer">
+      <p><strong>Acute Care Horizons | Evidence-Based Acute Care Protocols</strong></p>
+      <p>© 2025 Acute Care Horizons. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // Case Study Toggle
+    function toggleCase(header) {
+      const content = header.nextElementSibling;
+      const toggle = header.querySelector('.case-toggle');
+      
+      if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        toggle.textContent = '+';
+      } else {
+        content.classList.add('expanded');
+        toggle.textContent = '−';
+      }
+    }
+    
+    // Case Option Selection
+    function selectCaseOption(element, answer) {
+      // Remove previous selections
+      const options = element.parentElement.querySelectorAll('.case-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+      
+      // Add selection
+      element.classList.add('selected');
+      
+      // Show explanation
+      const caseContent = element.closest('.case-content');
+      const explanation = caseContent.querySelector('.case-explanation');
+      explanation.style.display = 'block';
+      
+      // Scroll to explanation
+      setTimeout(() => {
+        explanation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 300);
+    }
+  </script>
+</body>
+</html> 

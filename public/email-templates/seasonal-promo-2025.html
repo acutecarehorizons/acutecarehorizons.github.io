@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seasonal Promotion 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #222; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 32px auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 32px 24px; }
+    .header { text-align: center; margin-bottom: 32px; background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white; padding: 32px 24px; border-radius: 12px; position: relative; overflow: hidden; }
+    .header::before { content: '🎄'; font-size: 48px; position: absolute; top: 10px; right: 20px; opacity: 0.3; }
+    .header h1 { font-size: 28px; margin: 0 0 8px 0; font-weight: 700; }
+    .header p { font-size: 18px; margin: 0; opacity: 0.9; }
+    .countdown { background: rgba(255,255,255,0.2); padding: 16px; border-radius: 8px; margin: 20px 0; }
+    .countdown h3 { margin: 0 0 12px 0; font-size: 16px; }
+    .countdown-timer { display: flex; justify-content: center; gap: 16px; }
+    .timer-unit { background: rgba(255,255,255,0.9); color: #333; padding: 12px 8px; border-radius: 8px; text-align: center; min-width: 60px; }
+    .timer-number { font-size: 24px; font-weight: 700; display: block; }
+    .timer-label { font-size: 12px; text-transform: uppercase; }
+    .quiz-section { background: #f8f9fa; padding: 24px; border-radius: 12px; margin: 24px 0; }
+    .quiz-question { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 16px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { background: white; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #667eea; background: #f0f4ff; }
+    .quiz-option.correct { border-color: #28a745; background: #d4edda; }
+    .quiz-option.incorrect { border-color: #dc3545; background: #f8d7da; }
+    .book-showcase { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 24px; border-radius: 12px; margin: 24px 0; }
+    .book-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 32px 0; }
+    .book-card { display: flex; align-items: center; background: #f4f8fb; border-radius: 8px; padding: 16px; border-left: 4px solid #667eea; }
+    .book-image { flex: 0 0 80px; margin-right: 16px; }
+    .book-image img { width: 80px; height: auto; border-radius: 6px; border: 1px solid #e0e0e0; }
+    .book-info { flex: 1; }
+    .book-title { font-size: 14px; font-weight: 600; color: #222; margin: 0 0 4px 0; }
+    .book-subtitle { font-size: 12px; color: #667eea; margin: 0 0 6px 0; }
+    .book-audience { font-size: 10px; color: #667eea; border: 1px solid #667eea; border-radius: 12px; padding: 2px 8px; display: inline-block; margin-bottom: 6px; }
+    .book-links { margin-top: 6px; display: flex; gap: 8px; }
+    .amazon-btn img, .google-btn img { height: 20px; width: auto; display: inline-block; vertical-align: middle; }
+    .google-btn { padding: 0; background: transparent; border: none; cursor: pointer; }
+    .cta-section { text-align: center; margin: 32px 0; }
+    .cta-button { background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white; padding: 16px 32px; border: none; border-radius: 8px; font-size: 18px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; transition: transform 0.2s; }
+    .cta-button:hover { transform: translateY(-2px); }
+    .footer { text-align: center; color: #888; font-size: 12px; margin-top: 40px; }
+    @media (max-width: 600px) {
+      .container { padding: 16px; margin: 16px; }
+      .countdown-timer { gap: 8px; }
+      .timer-unit { min-width: 50px; padding: 8px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎁 Holiday Special: 2025 Protocols</h1>
+      <p>Give the gift of knowledge this season</p>
+      <div class="countdown">
+        <h3>⏰ Limited Time Offer Ends In:</h3>
+        <div class="countdown-timer">
+          <div class="timer-unit">
+            <span class="timer-number" id="days">07</span>
+            <span class="timer-label">Days</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-number" id="hours">23</span>
+            <span class="timer-label">Hours</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-number" id="minutes">45</span>
+            <span class="timer-label">Minutes</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-number" id="seconds">12</span>
+            <span class="timer-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-question">🎯 Quick Quiz: What's your biggest challenge in acute care?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="selectOption(this, 'A')">A) Keeping up with latest protocols</div>
+        <div class="quiz-option" onclick="selectOption(this, 'B')">B) Quick decision-making under pressure</div>
+        <div class="quiz-option" onclick="selectOption(this, 'C')">C) Comprehensive discharge planning</div>
+        <div class="quiz-option" onclick="selectOption(this, 'D')">D) All of the above</div>
+      </div>
+      <p style="font-size:14px;color:#666;margin-top:12px;text-align:center;">Click your answer to see our recommendation!</p>
+    </div>
+
+    <div class="book-showcase">
+      <h2 style="text-align:center;margin:0 0 20px 0;">🎁 Perfect Gifts for Healthcare Professionals</h2>
+      <div class="book-grid">
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/np-acp-dm-2025.jpg" alt="Nurse Practitioner Acute Care Protocols and Disease Management">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Nurse Practitioner Acute Care Protocols and Disease Management</div>
+            <div class="book-subtitle">For Emergency Departments, Urgent Care Centers and Family Practices</div>
+            <div class="book-audience">Nurse Practitioners</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=np-acp-dm-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/np-pg-2025.jpg" alt="Nurse Practitioner Guide">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Nurse Practitioner Guide</div>
+            <div class="book-subtitle">For Emergency Departments, Urgent Care Centers, and Family Practices</div>
+            <div class="book-audience">Nurse Practitioners</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=np-guide-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+              <a href="https://acutecarrehorizons.com/link?bookId=np-guide-2025&linkType=google" target="_blank" class="google-btn">
+                <img src="https://acutecarehorizons.com/images/google-play-badge.png" alt="Get it on Google Play">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/pa-acp-dm-2025.jpg" alt="Physician Assistant Acute Care Protocols and Disease Management">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Physician Assistant Acute Care Protocols and Disease Management</div>
+            <div class="book-subtitle">Physician Assistant Acute Care Protocols and Disease Management</div>
+            <div class="book-audience">Physician Assistants</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=pa-acp-dm-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card">
+          <div class="book-image">
+            <img src="https://acutecarehorizons.com/images/ac-bedside-us-2025.jpg" alt="Acute Care Bedside Ultrasound">
+          </div>
+          <div class="book-info">
+            <div class="book-title">Acute Care Bedside Ultrasound</div>
+            <div class="book-subtitle">Made Simpler</div>
+            <div class="book-audience">All Practitioners</div>
+            <div class="book-links">
+              <a href="https://acutecarrehorizons.com/link?bookId=ac-bedside-us-2025&linkType=amazon" target="_blank" class="amazon-btn">
+                <img src="https://acutecarehorizons.com/images/available_at_amazon.png" alt="Available at Amazon">
+              </a>
+              <a href="https://acutecarrehorizons.com/link?bookId=ac-bedside-us-2025&linkType=google" target="_blank" class="google-btn">
+                <img src="https://acutecarehorizons.com/images/google-play-badge.png" alt="Get it on Google Play">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2 style="color:#333;margin-bottom:16px;">🎯 Why Choose Our 2025 Editions?</h2>
+      <ul style="text-align:left;font-size:16px;line-height:1.6;color:#555;">
+        <li>✅ <strong>Quick Reference:</strong> Bulleted format for fast scanning</li>
+        <li>✅ <strong>Evidence-Based:</strong> Latest clinical guidelines</li>
+        <li>✅ <strong>Comprehensive:</strong> Over 290 protocols and guides</li>
+        <li>✅ <strong>Portable:</strong> Available on Kindle and Google Play</li>
+        <li>✅ <strong>Updated:</strong> 2025 edition with latest content</li>
+      </ul>
+      
+      <a href="https://acutecarrehorizons.com/books" class="cta-button" style="margin-top:24px;">
+        🎁 Shop Now - Limited Time!
+      </a>
+    </div>
+
+    <div class="footer">
+      <p><strong>Acute Care Horizons | Evidence-Based Acute Care Protocols</strong></p>
+      <p>© 2025 Acute Care Horizons. All rights reserved.</p>
+      <p style="font-size:10px;color:#999;">*Offer valid until December 31, 2025</p>
+    </div>
+  </div>
+
+  <script>
+    // Countdown Timer
+    function updateCountdown() {
+      const now = new Date();
+      const endDate = new Date('2025-12-31T23:59:59');
+      const diff = endDate - now;
+      
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      }
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    
+    // Quiz Interaction
+    function selectOption(element, answer) {
+      // Remove previous selections
+      document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+      });
+      
+      // Add selection class
+      element.classList.add('correct');
+      
+      // Show recommendation based on answer
+      setTimeout(() => {
+        let recommendation = '';
+        switch(answer) {
+          case 'A':
+            recommendation = '📚 Our 2025 protocols are perfect for staying current!';
+            break;
+          case 'B':
+            recommendation = '⚡ Our quick-reference format helps with fast decisions!';
+            break;
+          case 'C':
+            recommendation = '📋 Our comprehensive discharge criteria sections are ideal!';
+            break;
+          case 'D':
+            recommendation = '🎯 Perfect! Our complete collection covers all your needs!';
+            break;
+        }
+        
+        const quizSection = document.querySelector('.quiz-section');
+        const existingRec = quizSection.querySelector('.recommendation');
+        if (existingRec) existingRec.remove();
+        
+        const recDiv = document.createElement('div');
+        recDiv.className = 'recommendation';
+        recDiv.style.cssText = 'background:#d4edda;color:#155724;padding:12px;border-radius:8px;margin-top:12px;text-align:center;font-weight:600;';
+        recDiv.textContent = recommendation;
+        quizSection.appendChild(recDiv);
+      }, 500);
+    }
+  </script>
+</body>
+</html> 

@@ -180,10 +180,25 @@ const Home: React.FC = () => {
                 alt={book.title}
               />
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" component="h3" gutterBottom sx={{ fontWeight: 500 }}>
+                <Typography variant="h6" component="h3" gutterBottom 
+                  sx={{
+                    fontWeight: 500,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    minHeight: '3.2em',
+                  }}>
                   {book.title}
                 </Typography>
-                <Typography variant="subtitle1" color="primary" gutterBottom>
+                <Typography variant="subtitle1" color="primary" gutterBottom 
+                  sx={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 5,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    minHeight: '4em',
+                  }}>
                   {book.subtitle}
                 </Typography>
                 <List dense sx={{ py: 0 }}>
