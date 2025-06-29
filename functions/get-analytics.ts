@@ -14,6 +14,7 @@ async function sha256(str) {
   return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
+
 export async function onRequestGet(context) {
   const { env, request } = context;
   const authHeader = request.headers.get('Authorization');
@@ -22,7 +23,7 @@ export async function onRequestGet(context) {
     return new Response('Unauthorized', { status: 401, headers: { 'WWW-Authenticate': 'Basic' } });
   }
   const hash = await sha256(creds.password);
-  if (hash !== env.analitics_hash) {
+  if (hash !== env.analitics_pass) {
     return new Response('Unauthorized', { status: 401, headers: { 'WWW-Authenticate': 'Basic' } });
   }
   // Get total clicks per book/linkType
