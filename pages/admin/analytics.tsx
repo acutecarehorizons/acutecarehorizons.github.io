@@ -1,18 +1,19 @@
+'use client';
 import React, { useEffect, useState } from 'react';
-
-function getCachedPassword() {
-  return sessionStorage.getItem('analyticsPassword') || '';
-}
-
-function setCachedPassword(pw: string) {
-  sessionStorage.setItem('analyticsPassword', pw);
-}
 
 export default function Analytics() {
   const [data, setData] = useState<{ url: string; clicks: number }[] | null>(null);
-  const [password, setPassword] = useState(getCachedPassword());
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Only read sessionStorage in the browser
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const cached = sessionStorage.getItem('analyticsPassword');
+      if (cached) setPassword(cached);
+    }
+  }, []);
 
   useEffect(() => {
     if (!password) return;
@@ -32,13 +33,17 @@ export default function Analytics() {
       })
       .then(result => {
         setData(result);
-        setCachedPassword(password);
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('analyticsPassword', password);
+        }
         setLoading(false);
       })
       .catch(err => {
         setError('Incorrect password');
         setData(null);
-        setCachedPassword('');
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('analyticsPassword');
+        }
         setLoading(false);
       });
   }, [password]);
@@ -49,7 +54,7 @@ export default function Analytics() {
     setError('');
     setLoading(true);
     // The useEffect will trigger fetch
-    setPassword(password);
+    // setPassword is already called by the input's onChange
   };
 
   if (!data && !loading) {
