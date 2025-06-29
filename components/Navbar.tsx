@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -17,14 +17,52 @@ import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
+function hasAcceptedCookies() {
+  return localStorage.getItem('cookiesAccepted') === 'true';
+}
+
+function acceptCookies() {
+  localStorage.setItem('cookiesAccepted', 'true');
+}
+
+// Call this when the user accepts cookies, passing the recordId to update
+async function updateGeo(recordId, type = 'visit') {
+  const visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) return;
+  await fetch('/update-geo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      visitorId,
+      type,
+      recordId,
+      ip: '', // Optionally leave blank; backend can use request headers
+    }),
+  });
+}
+
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [cookiesAccepted, setCookiesAccepted] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const router = useRouter();
 
+  useEffect(() => {
+    setCookiesAccepted(hasAcceptedCookies());
+  }, []);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleAcceptCookies = async () => {
+    acceptCookies();
+    setCookiesAccepted(true);
+    // TODO: Fetch recent record IDs for this visitor and update geolocation for each
+    // Example:
+    // const recordIds = await fetch('/api/get-recent-record-ids').then(res => res.json());
+    // recordIds.forEach(id => updateGeo(id, 'visit'));
   };
 
   const navItems = [
@@ -125,6 +163,20 @@ const Navbar: React.FC = () => {
                 </Button>
               ))}
             </Box>
+          )}
+
+          {!cookiesAccepted && (
+            <Button
+              color="inherit"
+              onClick={handleAcceptCookies}
+              sx={{
+                mx: 1,
+                color: 'inherit',
+                fontWeight: 400,
+              }}
+            >
+              Accept Cookies
+            </Button>
           )}
         </Toolbar>
       </AppBar>

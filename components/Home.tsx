@@ -28,6 +28,44 @@ const gradientMove = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
+function getOrCreateVisitorId() {
+  let visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem('visitorId', visitorId);
+  }
+  return visitorId;
+}
+
+async function trackVisit(withGeo = false) {
+  const visitorId = getOrCreateVisitorId();
+  await fetch('/track-visit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      visitorId,
+      userAgent: navigator.userAgent,
+      ip: '', // Optionally leave blank; backend can use request headers
+      withGeo,
+    }),
+  });
+}
+
+// Call this when the user accepts cookies, passing the recordId to update
+async function updateGeo(recordId, type = 'visit') {
+  const visitorId = getOrCreateVisitorId();
+  await fetch('/update-geo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      visitorId,
+      type,
+      recordId,
+      ip: '', // Optionally leave blank; backend can use request headers
+    }),
+  });
+}
+
 const Home: React.FC = () => {
   const theme = useTheme();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -39,6 +77,11 @@ const Home: React.FC = () => {
     }, 4500);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    // Track a visit on page load
+    trackVisit(false);
   }, []);
 
   return (

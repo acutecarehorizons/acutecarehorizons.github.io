@@ -313,7 +313,7 @@ const Books: React.FC = () => {
                 <Button
                   variant="contained"
                   color="secondary"
-                  href={book.amazonUrl}
+                  href={`/link?bookId=${book.id}&linkType=amazon`}
                   target="_blank"
                   rel="noopener noreferrer"
                   size="large"
@@ -325,13 +325,13 @@ const Books: React.FC = () => {
                   <Button
                     variant="outlined"
                     color="inherit"
-                    href={book.googlePlayUrl}
+                    href={`/link?bookId=${book.id}&linkType=google`}
                     target="_blank"
                     rel="noopener noreferrer"
                     size="large"
-                    sx={{  minWidth: 0, height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'white', border: 'none' }}
+                    sx={{ minWidth: 0, p: 0, height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                   >
-                    <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 55, width: 'auto', display: 'block' }} />
+                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 58, width: 'auto', display: 'block' }} />
                   </Button>
                 )}
               </CardActions>
