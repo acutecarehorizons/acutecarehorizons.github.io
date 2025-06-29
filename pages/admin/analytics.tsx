@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Analytics() {
-  const [data, setData] = useState<{ book_id: string; link_type: string; clicks: number }[] | null>(null);
+  const [data, setData] = useState<{ visits: any[]; link_clicks: any[] } | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(30);
@@ -10,11 +10,7 @@ export default function Analytics() {
   const fetchAnalytics = () => {
     setLoading(true);
     setError('');
-    fetch(`https://acutecarehorizons.com/get-analytics?days=${days}`, {
-      headers: {
-        'Authorization': `Basic ${btoa('admin:erdoctor1')}`
-      }
-    })
+    fetch(`/get-analytics?days=${days}`)
       .then(res => {
         if (!res.ok) throw new Error('Unauthorized');
         return res.json();
@@ -59,20 +55,70 @@ export default function Analytics() {
         </label>
         <button onClick={fetchAnalytics} style={{ marginLeft: 12 }}>Refresh</button>
       </div>
+      <h2>Visits</h2>
       <table>
         <thead>
           <tr>
-            <th>Book ID</th>
-            <th>Link Type</th>
-            <th>Clicks</th>
+            <th>ID</th>
+            <th>Visitor ID</th>
+            <th>User Agent</th>
+            <th>Geo</th>
+            <th>Created At</th>
           </tr>
         </thead>
         <tbody>
-          {data && data.map(row => (
-            <tr key={row.book_id + '-' + row.link_type}>
+          {data && data.visits.map(row => (
+            <tr key={row.id}>
+              <td>{row.id}</td>
+              <td>{row.visitor_id}</td>
+              <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.user_agent}</td>
+              <td>
+                {row.geolocation_json ? (() => {
+                  try {
+                    const geo = JSON.parse(row.geolocation_json);
+                    return `${geo.cityName || ''}, ${geo.regionName || ''}, ${geo.countryCode || ''} (${geo.latitude}, ${geo.longitude})`;
+                  } catch {
+                    return 'Invalid';
+                  }
+                })() : 'N/A'}
+              </td>
+              <td>{row.created_at}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <h2 style={{ marginTop: 32 }}>Link Clicks</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Visitor ID</th>
+            <th>Book ID</th>
+            <th>Link Type</th>
+            <th>User Agent</th>
+            <th>Geo</th>
+            <th>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data && data.link_clicks.map(row => (
+            <tr key={row.id}>
+              <td>{row.id}</td>
+              <td>{row.visitor_id}</td>
               <td>{row.book_id}</td>
               <td>{row.link_type}</td>
-              <td>{row.clicks}</td>
+              <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.user_agent}</td>
+              <td>
+                {row.geolocation_json ? (() => {
+                  try {
+                    const geo = JSON.parse(row.geolocation_json);
+                    return `${geo.cityName || ''}, ${geo.regionName || ''}, ${geo.countryCode || ''} (${geo.latitude}, ${geo.longitude})`;
+                  } catch {
+                    return 'Invalid';
+                  }
+                })() : 'N/A'}
+              </td>
+              <td>{row.created_at}</td>
             </tr>
           ))}
         </tbody>
