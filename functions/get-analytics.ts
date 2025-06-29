@@ -14,7 +14,6 @@ async function sha256(str) {
   return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
-
 export async function onRequestGet(context) {
   const { env, request } = context;
   const authHeader = request.headers.get('Authorization');
@@ -33,24 +32,76 @@ export async function onRequestGet(context) {
   // Calculate start date string in ISO format
   const startDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
 
-  // Get all visits for the period
-  const visits = await env.DB.prepare(
-    `SELECT id, geolocation_json, created_at
+  // Get total visit count for the period
+  const visitCount = await env.DB.prepare(
+    `SELECT COUNT(*) as count
      FROM visits
-     WHERE created_at >= ?
-     ORDER BY created_at DESC`
-  ).bind(startDate).all();
+     WHERE created_at >= ?`
+  ).bind(startDate).first();
 
-  // Get all link clicks for the period, joined with book_id/link_type
-  const linkClicks = await env.DB.prepare(
-    `SELECT link_clicks.id, links.book_id, links.link_type,  link_clicks.geolocation_json, link_clicks.created_at
+  // Get link clicks grouped by book_id and link_type
+  const linkClicksSummary = await env.DB.prepare(
+    `SELECT links.book_id, links.link_type, COUNT(*) as count
      FROM link_clicks
      JOIN links ON links.id = link_clicks.link_id
      WHERE link_clicks.created_at >= ?
-     ORDER BY link_clicks.created_at DESC`
+     GROUP BY links.book_id, links.link_type
+     ORDER BY links.book_id, links.link_type`
   ).bind(startDate).all();
 
-  return new Response(JSON.stringify({ visits: visits.results, link_clicks: linkClicks.results }), {
+  // Get unique geolocations from visits table
+  const visitGeolocations = await env.DB.prepare(
+    `SELECT DISTINCT geolocation_json
+     FROM visits
+     WHERE created_at >= ? AND geolocation_json IS NOT NULL AND geolocation_json != ''`
+  ).bind(startDate).all();
+
+  // Get unique geolocations from link_clicks table
+  const linkClickGeolocations = await env.DB.prepare(
+    `SELECT DISTINCT geolocation_json
+     FROM link_clicks
+     WHERE created_at >= ? AND geolocation_json IS NOT NULL AND geolocation_json != ''`
+  ).bind(startDate).all();
+
+  // Combine and deduplicate geolocations
+  const allGeolocations = new Set();
+  const uniqueGeolocations: Array<{
+    latitude: number;
+    longitude: number;
+    cityName: string;
+    regionName: string;
+    countryCode: string;
+    countryName: string;
+  }> = [];
+
+  [...visitGeolocations.results, ...linkClickGeolocations.results].forEach(row => {
+    if (row.geolocation_json && !allGeolocations.has(row.geolocation_json)) {
+      allGeolocations.add(row.geolocation_json);
+      try {
+        const geo = JSON.parse(row.geolocation_json);
+        if (geo.latitude && geo.longitude) {
+          uniqueGeolocations.push({
+            latitude: geo.latitude,
+            longitude: geo.longitude,
+            cityName: geo.cityName || '',
+            regionName: geo.regionName || '',
+            countryCode: geo.countryCode || '',
+            countryName: geo.countryName || ''
+          });
+        }
+      } catch (e) {
+        // Skip invalid JSON
+      }
+    }
+  });
+
+  return new Response(JSON.stringify({
+    summary: {
+      totalVisits: visitCount.count,
+      linkClicksByBook: linkClicksSummary.results
+    },
+    geolocations: uniqueGeolocations
+  }), {
     headers: { 'Content-Type': 'application/json' }
   });
 }

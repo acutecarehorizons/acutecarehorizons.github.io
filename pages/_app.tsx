@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../src/index.css';
+import 'leaflet/dist/leaflet.css';
 import CookieBanner from '../components/CookieBanner';
 
 const theme = createTheme({
