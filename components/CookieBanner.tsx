@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+async function updateGeo() {
+  const visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) return;
+  await fetch('/update-geo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      visitorId,
+      ip: '', // Optionally leave blank; backend can use request headers
+    }),
+  });
+}
+
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
@@ -9,10 +22,11 @@ export default function CookieBanner() {
     }
   }, []);
 
-  const handleAccept = () => {
+  const handleAccept = async () => {
     localStorage.setItem('cookiesAccepted', 'true');
     setVisible(false);
     // Enable analytics here
+    await updateGeo();
   };
 
   const handleDeny = () => {

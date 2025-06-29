@@ -51,21 +51,6 @@ async function trackVisit(withGeo = false) {
   });
 }
 
-// Call this when the user accepts cookies, passing the recordId to update
-async function updateGeo(recordId, type = 'visit') {
-  const visitorId = getOrCreateVisitorId();
-  await fetch('/update-geo', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      visitorId,
-      type,
-      recordId,
-      ip: '', // Optionally leave blank; backend can use request headers
-    }),
-  });
-}
-
 const Home: React.FC = () => {
   const theme = useTheme();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);

@@ -33,15 +33,24 @@ export async function onRequestGet(context) {
   // Calculate start date string in ISO format
   const startDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
 
-  // Get total clicks per book_id/link_type for the period
-  const result = await env.DB.prepare(
-    `SELECT links.book_id, links.link_type, COUNT(*) as clicks
-     FROM links
-     JOIN link_clicks ON links.id = link_clicks.link_id
-     WHERE link_clicks.created_at >= ?
-     GROUP BY links.book_id, links.link_type`
+  // Get all visits for the period
+  const visits = await env.DB.prepare(
+    `SELECT id, visitor_id, ip_address, user_agent, geolocation_json, created_at
+     FROM visits
+     WHERE created_at >= ?
+     ORDER BY created_at DESC`
   ).bind(startDate).all();
-  return new Response(JSON.stringify(result.results), {
+
+  // Get all link clicks for the period, joined with book_id/link_type
+  const linkClicks = await env.DB.prepare(
+    `SELECT link_clicks.id, link_clicks.visitor_id, link_clicks.link_id, links.book_id, links.link_type, link_clicks.ip_address, link_clicks.user_agent, link_clicks.geolocation_json, link_clicks.created_at
+     FROM link_clicks
+     JOIN links ON links.id = link_clicks.link_id
+     WHERE link_clicks.created_at >= ?
+     ORDER BY link_clicks.created_at DESC`
+  ).bind(startDate).all();
+
+  return new Response(JSON.stringify({ visits: visits.results, link_clicks: linkClicks.results }), {
     headers: { 'Content-Type': 'application/json' }
   });
 }
