@@ -1,6 +1,5 @@
 interface UpdateGeoPayload {
     visitorId: string;
-    recordId: number;
 }
 
 export async function onRequestPost(context) {

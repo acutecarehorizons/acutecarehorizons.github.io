@@ -1,7 +1,6 @@
 interface TrackVisitPayload {
     visitorId?: string;
     userAgent: string;
-    ip: string;
     withGeo: boolean;
   }
   
@@ -10,16 +9,19 @@ interface TrackVisitPayload {
     const payload: TrackVisitPayload = await request.json();
   
     let geolocation_json: string | null = null;
-  
-    if (payload.withGeo && payload.ip) {
-      try {
-        const geoRes = await fetch(`https://free.freeipapi.com/api/json/${payload.ip}`);
-        if (geoRes.ok) {
-          geolocation_json = JSON.stringify(await geoRes.json());
+    let ip: string | null = null;
+    if (payload.withGeo) {
+        // Get IP address from headers
+        ip = request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip') || '';
+        if (ip && ip.includes(',')) ip = ip.split(',')[0].trim();
+        try {
+            const geoRes = await fetch(`https://free.freeipapi.com/api/json/${ip}`);
+            if (geoRes.ok) {
+            geolocation_json = JSON.stringify(await geoRes.json());
+            }
+        } catch (e) {
+            geolocation_json = null;
         }
-      } catch (e) {
-        geolocation_json = null;
-      }
     }
   
     // Insert or ignore visitor
@@ -35,7 +37,7 @@ interface TrackVisitPayload {
        VALUES (?, ?, ?, ?, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`
     ).bind(
       payload.visitorId || null,
-      payload.ip,
+      ip || null,
       payload.userAgent,
       geolocation_json
     ).run();

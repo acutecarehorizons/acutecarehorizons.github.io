@@ -11,8 +11,6 @@ import {
   Paper,
   Fade,
   useTheme,
-  Alert,
-  keyframes,
   List,
   ListItem,
   ListItemIcon,
@@ -22,34 +20,6 @@ import NextLink from 'next/link';
 import { Launch as LaunchIcon, MenuBook as BookIcon } from '@mui/icons-material';
 import { books, testimonials } from '../src/data/books';
 
-const gradientMove = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
-function getOrCreateVisitorId() {
-  let visitorId = localStorage.getItem('visitorId');
-  if (!visitorId) {
-    visitorId = crypto.randomUUID();
-    localStorage.setItem('visitorId', visitorId);
-  }
-  return visitorId;
-}
-
-async function trackVisit(withGeo = false) {
-  const visitorId = getOrCreateVisitorId();
-  await fetch('/track-visit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      visitorId,
-      userAgent: navigator.userAgent,
-      ip: '', // Optionally leave blank; backend can use request headers
-      withGeo,
-    }),
-  });
-}
 
 const Home: React.FC = () => {
   const theme = useTheme();
@@ -64,10 +34,6 @@ const Home: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    // Track a visit on page load
-    trackVisit(false);
-  }, []);
 
   return (
     <Box>

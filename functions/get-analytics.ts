@@ -35,7 +35,7 @@ export async function onRequestGet(context) {
 
   // Get all visits for the period
   const visits = await env.DB.prepare(
-    `SELECT id, visitor_id, user_agent, geolocation_json, created_at
+    `SELECT id, geolocation_json, created_at
      FROM visits
      WHERE created_at >= ?
      ORDER BY created_at DESC`
@@ -43,7 +43,7 @@ export async function onRequestGet(context) {
 
   // Get all link clicks for the period, joined with book_id/link_type
   const linkClicks = await env.DB.prepare(
-    `SELECT link_clicks.id, link_clicks.visitor_id, link_clicks.link_id, links.book_id, links.link_type, link_clicks.user_agent, link_clicks.geolocation_json, link_clicks.created_at
+    `SELECT link_clisk.id, links.book_id, links.link_type,  link_clicks.geolocation_json, link_clicks.created_at
      FROM link_clicks
      JOIN links ON links.id = link_clicks.link_id
      WHERE link_clicks.created_at >= ?
@@ -58,24 +58,3 @@ export async function onRequestGet(context) {
 export async function onRequestPost() {
   return new Response('Method Not Allowed', { status: 405 });
 } 
-
-// Respond to OPTIONS method
-export async function onRequestOptions(context) {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Methods": "GET, OPTIONS",
-        "Access-Control-Max-Age": "86400",
-      },
-    });
-  };
-  
-  // Set CORS to all /api responses
-  export async function onRequest(context) {
-    const response = await context.next();
-    response.headers.set("Access-Control-Allow-Origin", "*");
-    response.headers.set("Access-Control-Max-Age", "86400");
-    return response;
-  };

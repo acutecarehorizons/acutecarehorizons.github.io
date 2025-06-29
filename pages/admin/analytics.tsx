@@ -59,9 +59,6 @@ export default function Analytics() {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Visitor ID</th>
-            <th>User Agent</th>
             <th>Geo</th>
             <th>Created At</th>
           </tr>
@@ -69,8 +66,6 @@ export default function Analytics() {
         <tbody>
           {data && data.visits.map(row => (
             <tr key={row.id}>
-              <td>{row.id}</td>
-              <td>{row.visitor_id}</td>
               <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.user_agent}</td>
               <td>
                 {row.geolocation_json ? (() => {
@@ -91,11 +86,8 @@ export default function Analytics() {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Visitor ID</th>
             <th>Book ID</th>
             <th>Link Type</th>
-            <th>User Agent</th>
             <th>Geo</th>
             <th>Created At</th>
           </tr>
@@ -103,8 +95,6 @@ export default function Analytics() {
         <tbody>
           {data && data.link_clicks.map(row => (
             <tr key={row.id}>
-              <td>{row.id}</td>
-              <td>{row.visitor_id}</td>
               <td>{row.book_id}</td>
               <td>{row.link_type}</td>
               <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.user_agent}</td>

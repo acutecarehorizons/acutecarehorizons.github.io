@@ -14,7 +14,6 @@ export interface Env {
     bookId: string;
     linkType: 'amazon' | 'google';
     userAgent: string;
-    ip: string;
     withGeo: boolean;
   }
   
@@ -28,9 +27,12 @@ export interface Env {
     const payload: TrackLinkPayload = await request.json();
   
     let geolocation_json: string | null = null;
-  
-    if (payload.withGeo && payload.ip) {
+    let ip: string | null = null;
+    if (payload.withGeo) {
       try {
+        // Get IP address from headers
+        ip = request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip') || '';
+        if (ip && ip.includes(',')) ip = ip.split(',')[0].trim();
         const geoRes = await fetch(`https://free.freeipapi.com/api/json/${payload.ip}`);
         if (geoRes.ok) {
           geolocation_json = JSON.stringify(await geoRes.json());
@@ -66,7 +68,7 @@ export interface Env {
     ).bind(
       payload.visitorId || null,
       linkId,
-      payload.ip,
+      ip || null,
       payload.userAgent,
       geolocation_json
     ).run();

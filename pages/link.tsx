@@ -14,7 +14,14 @@ const spinnerStyle: React.CSSProperties = {
   background: '#fff',
   zIndex: 9999,
 };
-
+function getOrCreateVisitorId() {
+  let visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem('visitorId', visitorId);
+  }
+  return visitorId;
+}
 const Spinner = () => (
   <div style={spinnerStyle}>
     <div style={{
@@ -37,10 +44,11 @@ const Spinner = () => (
 export default function LinkRedirect() {
   const router = useRouter();
 
+  
   useEffect(() => {
     if (!router.isReady) return;
 
-    const { bookId, linkType, visitorId } = router.query;
+    const { bookId, linkType } = router.query;
     if (typeof bookId !== 'string' || typeof linkType !== 'string') {
       router.replace('/');
       return;
@@ -54,6 +62,7 @@ export default function LinkRedirect() {
     }
 
     if (destination) {
+      const visitorId = getOrCreateVisitorId();
       // Track the click
       fetch('/track-link', {
         method: 'POST',

@@ -16,6 +16,28 @@ import {
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+function getOrCreateVisitorId() {
+  let visitorId = localStorage.getItem('visitorId');
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem('visitorId', visitorId);
+  }
+  return visitorId;
+}
+
+async function trackVisit(withGeo = false) {
+  const visitorId = getOrCreateVisitorId();
+  await fetch('/track-visit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      visitorId,
+      userAgent: navigator.userAgent,
+      ip: '', // Optionally leave blank; backend can use request headers
+      withGeo,
+    }),
+  });
+}
 
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -35,6 +57,15 @@ const Navbar: React.FC = () => {
     { label: 'Contact', path: '/contact' },
   ];
 
+  useEffect(() => {
+    // Only track visit if not on /link route and only once per tab (window.name)
+    if (router.pathname === '/link') return;
+    if (!window.name) {
+      window.name = 'ach-tab-' + crypto.randomUUID();
+      trackVisit(false);
+    }
+  }, [router.pathname]);
+  
   const drawer = (
     <Box sx={{ width: 250 }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
