@@ -1,12 +1,12 @@
 import React from 'react';
+import NextLink from 'next/link';
+import Link from '@mui/material/Link';
 import {
   Box,
   Container,
   Typography,
-  Link,
   Divider,
 } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
@@ -43,10 +43,10 @@ const Footer: React.FC = () => {
               6th Edition Books Available at{' '}
               <Link
                 href="https://www.amazon.com/s?k=acute+care+protocols+6th+edition+Donald+Correll&i=stripbooks&s=date-desc-rank&ds=v1%3Acq3BPCh%2Fu4mjKy0%2Bf5y6gJf3kTtz8aZaxZjVxi5Rkfs&crid=ECA65RZFP1SI&qid=1675627436&sprefix=acute+care+protocols+6th+edition+donald+correl%2Cstripbooks%2C175&ref=sr_st_date-desc-rank"
-                target="_blank"
-                rel="noopener noreferrer"
                 color="primary"
                 sx={{ fontWeight: 500 }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Amazon
               </Link>{' '}
@@ -59,38 +59,10 @@ const Footer: React.FC = () => {
               Quick Links
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link
-                component={RouterLink}
-                to="/"
-                color="text.secondary"
-                sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
-              >
-                Home
-              </Link>
-              <Link
-                component={RouterLink}
-                to="/books"
-                color="text.secondary"
-                sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
-              >
-                Books
-              </Link>
-              <Link
-                component={RouterLink}
-                to="/about"
-                color="text.secondary"
-                sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
-              >
-                About
-              </Link>
-              <Link
-                component={RouterLink}
-                to="/contact"
-                color="text.secondary"
-                sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
-              >
-                Contact
-              </Link>
+              <Link component={NextLink} href="/" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Home</Link>
+              <Link component={NextLink} href="/books" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Books</Link>
+              <Link component={NextLink} href="/about" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>About</Link>
+              <Link component={NextLink} href="/contact" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Contact</Link>
             </Box>
           </Box>
         </Box>
@@ -111,24 +83,8 @@ const Footer: React.FC = () => {
             © {new Date().getFullYear()} Acute Care Horizons. All rights reserved.
           </Typography>
           <Box sx={{ display: 'flex', gap: 2 }}>
-            <Link
-              component={RouterLink}
-              to="/terms-of-use"
-              color="text.secondary"
-              variant="body2"
-              sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
-            >
-              Terms of Use
-            </Link>
-            <Link
-              component={RouterLink}
-              to="/disclaimer"
-              color="text.secondary"
-              variant="body2"
-              sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}
-            >
-              Disclaimer
-            </Link>
+            <Link component={NextLink} href="/terms-of-use" color="text.secondary" variant="body2" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Terms of Use</Link>
+            <Link component={NextLink} href="/disclaimer" color="text.secondary" variant="body2" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Disclaimer</Link>
           </Box>
         </Box>
       </Container>

@@ -14,13 +14,12 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
-import { Link, useLocation } from 'react-router-dom';
+import NextLink from 'next/link';
 
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -44,11 +43,12 @@ const Navbar: React.FC = () => {
         {navItems.map((item) => (
           <ListItem
             key={item.label}
-            component={Link}
-            to={item.path}
+            component={NextLink}
+            href={item.path}
+            passHref
             onClick={handleDrawerToggle}
             sx={{
-              color: location.pathname === item.path ? theme.palette.primary.main : 'inherit',
+              color: item.path === '/books' ? theme.palette.primary.main : 'inherit',
               textDecoration: 'none',
             }}
           >
@@ -64,8 +64,8 @@ const Navbar: React.FC = () => {
       <AppBar position="fixed" sx={{ backgroundColor: '#202020' }}>
         <Toolbar>
           <Box
-            component={Link}
-            to="/"
+            component={NextLink}
+            href="/"
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -107,12 +107,12 @@ const Navbar: React.FC = () => {
               {navItems.map((item) => (
                 <Button
                   key={item.label}
-                  component={Link}
-                  to={item.path}
+                  component={NextLink}
+                  href={item.path}
                   color="inherit"
                   sx={{
                     mx: 1,
-                    color: location.pathname === item.path ? theme.palette.secondary.main : 'inherit',
+                    color: item.path === '/books' ? theme.palette.secondary.main : 'inherit',
                     '&:hover': {
                       backgroundColor: 'rgba(255, 255, 255, 0.1)',
                     },

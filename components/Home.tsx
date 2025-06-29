@@ -14,9 +14,9 @@ import {
   Alert,
   keyframes,
 } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import NextLink from 'next/link';
 import { Launch as LaunchIcon, MenuBook as BookIcon } from '@mui/icons-material';
-import { books, testimonials } from '../data/books';
+import { books, testimonials } from '../src/data/books';
 
 const gradientMove = keyframes`
   0% { background-position: 0% 50%; }
@@ -85,8 +85,9 @@ const Home: React.FC = () => {
           </Typography>
           <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Button
-              component={RouterLink}
-              to="/books"
+              component={NextLink}
+              href="/books"
+              passHref
               variant="contained"
               size="large"
               startIcon={<BookIcon />}

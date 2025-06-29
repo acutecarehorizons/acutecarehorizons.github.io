@@ -26,7 +26,7 @@ import {
   School as SchoolIcon,
   LocalHospital as HospitalIcon,
 } from '@mui/icons-material';
-import { books, Book } from '../data/books';
+import { books, Book } from '../src/data/books';
 
 const Books: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState(0);
