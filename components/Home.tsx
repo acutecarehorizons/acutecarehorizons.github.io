@@ -183,11 +183,7 @@ const Home: React.FC = () => {
                 <Typography variant="h6" component="h3" gutterBottom 
                   sx={{
                     fontWeight: 500,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    minHeight: '3.2em',
+                    minHeight: '5em',
                   }}>
                   {book.title}
                 </Typography>
