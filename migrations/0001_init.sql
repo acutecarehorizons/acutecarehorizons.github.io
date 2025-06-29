@@ -15,8 +15,11 @@ CREATE TABLE visits (
 
 CREATE TABLE links (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book_id TEXT,
+    link_type TEXT,
     url TEXT UNIQUE,
-    created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+    created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+    UNIQUE(book_id, link_type)
 );
 
 CREATE TABLE link_clicks (
@@ -33,3 +36,4 @@ CREATE TABLE link_clicks (
 
 CREATE INDEX idx_link_clicks_visitor ON link_clicks(visitor_id);
 CREATE INDEX idx_link_clicks_link ON link_clicks(link_id);
+CREATE INDEX idx_link_clicks_created_at ON link_clicks(created_at);

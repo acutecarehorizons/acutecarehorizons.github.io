@@ -1,5 +1,10 @@
 // src/worker.ts
 
+// Add D1Database type for Cloudflare Workers
+// Remove this if you have the actual type from Cloudflare
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type D1Database = any;
+
 export interface Env {
     DB: D1Database;
   }
@@ -44,15 +49,14 @@ export interface Env {
     }
   
     // Insert or ignore link
-    const linkKey = `${payload.bookId}:${payload.linkType}`;
     await env.DB.prepare(
-      `INSERT OR IGNORE INTO links (url, created_at) VALUES (?, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`
-    ).bind(linkKey).run();
+      `INSERT OR IGNORE INTO links (book_id, link_type, url, created_at) VALUES (?, ?, ?, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`
+    ).bind(payload.bookId, payload.linkType, `${payload.bookId}:${payload.linkType}`).run();
   
     // Get link_id
     const linkRow = await env.DB.prepare(
-      `SELECT id FROM links WHERE url = ?`
-    ).bind(linkKey).first();
+      `SELECT id FROM links WHERE book_id = ? AND link_type = ?`
+    ).bind(payload.bookId, payload.linkType).first();
     const linkId = linkRow?.id;
   
     // Insert click

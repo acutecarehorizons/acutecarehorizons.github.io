@@ -23,15 +23,24 @@ export async function onRequestGet(context) {
     return new Response('Unauthorized', { status: 401, headers: { 'WWW-Authenticate': 'Basic' } });
   }
   const hash = await sha256(creds.password);
-  if (hash !== env.analitics_pass) {
+  if (hash !== env.analytics_pass) {
     return new Response('Unauthorized', { status: 401, headers: { 'WWW-Authenticate': 'Basic' } });
   }
-  // Get total clicks per book/linkType
+
+  // Get time period from query string (in days), default 30
+  const url = new URL(request.url);
+  const days = parseInt(url.searchParams.get('days') || '30', 10);
+  // Calculate start date string in ISO format
+  const startDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+
+  // Get total clicks per book_id/link_type for the period
   const result = await env.DB.prepare(
-    `SELECT url, COUNT(*) as clicks FROM links
+    `SELECT links.book_id, links.link_type, COUNT(*) as clicks
+     FROM links
      JOIN link_clicks ON links.id = link_clicks.link_id
-     GROUP BY url`
-  ).all();
+     WHERE link_clicks.created_at >= ?
+     GROUP BY links.book_id, links.link_type`
+  ).bind(startDate).all();
   return new Response(JSON.stringify(result.results), {
     headers: { 'Content-Type': 'application/json' }
   });
