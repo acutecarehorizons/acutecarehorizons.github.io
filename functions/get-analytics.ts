@@ -43,7 +43,7 @@ export async function onRequestGet(context) {
 
   // Get all link clicks for the period, joined with book_id/link_type
   const linkClicks = await env.DB.prepare(
-    `SELECT link_clisk.id, links.book_id, links.link_type,  link_clicks.geolocation_json, link_clicks.created_at
+    `SELECT link_clicks.id, links.book_id, links.link_type,  link_clicks.geolocation_json, link_clicks.created_at
      FROM link_clicks
      JOIN links ON links.id = link_clicks.link_id
      WHERE link_clicks.created_at >= ?
