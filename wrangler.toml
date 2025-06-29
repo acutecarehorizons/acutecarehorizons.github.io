@@ -1,4 +1,4 @@
 [[d1_databases]]
 binding = "DB" # This is the variable name you'll use in your Worker
 database_name = "acute-analytics"
-database_id = "baf5009e-34a8-4bcf-aca1-0b768ab54f1c"
+database_id = "b65cf114-e693-4909-ae7d-1216eeef7e85"

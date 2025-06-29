@@ -63,6 +63,7 @@ export default function LinkRedirect() {
 
     if (destination) {
       const visitorId = getOrCreateVisitorId();
+      const withGeo = localStorage.getItem('cookiesAccepted');
       // Track the click
       fetch('/track-link', {
         method: 'POST',
@@ -73,7 +74,7 @@ export default function LinkRedirect() {
           linkType,
           userAgent: navigator.userAgent,
           ip: '', // Let backend use headers
-          withGeo: false,
+          withGeo
         }),
       }).finally(() => {
         // Redirect after tracking

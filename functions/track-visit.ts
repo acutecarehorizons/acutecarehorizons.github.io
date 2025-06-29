@@ -1,6 +1,5 @@
 interface TrackVisitPayload {
     visitorId?: string;
-    userAgent: string;
     withGeo: boolean;
   }
   
@@ -9,13 +8,12 @@ interface TrackVisitPayload {
     const payload: TrackVisitPayload = await request.json();
   
     let geolocation_json: string | null = null;
-    let ip: string | null = null;
     if (payload.withGeo) {
-        // Get IP address from headers
-        ip = request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip') || '';
-        if (ip && ip.includes(',')) ip = ip.split(',')[0].trim();
+        // Get IP address from headers (only for geolocation, not stored)
+        const ip = request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip') || '';
+        const cleanIp = ip && ip.includes(',') ? ip.split(',')[0].trim() : ip;
         try {
-            const geoRes = await fetch(`https://free.freeipapi.com/api/json/${ip}`);
+            const geoRes = await fetch(`https://free.freeipapi.com/api/json/${cleanIp}`);
             if (geoRes.ok) {
             geolocation_json = JSON.stringify(await geoRes.json());
             }
@@ -31,14 +29,12 @@ interface TrackVisitPayload {
       ).bind(payload.visitorId).run();
     }
   
-    // Insert visit
+    // Insert visit (without IP address or user agent)
     await env.DB.prepare(
-      `INSERT INTO visits (visitor_id, ip_address, user_agent, geolocation_json, created_at)
-       VALUES (?, ?, ?, ?, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`
+      `INSERT INTO visits (visitor_id, geolocation_json, created_at)
+       VALUES (?, ?, strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`
     ).bind(
       payload.visitorId || null,
-      ip || null,
-      payload.userAgent,
       geolocation_json
     ).run();
   

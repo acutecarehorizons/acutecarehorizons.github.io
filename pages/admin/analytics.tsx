@@ -28,11 +28,30 @@ interface AnalyticsData {
   }>;
 }
 
+interface CleanupResult {
+  success: boolean;
+  message: string;
+  details?: {
+    timeOffset: string;
+    visitsDeleted: number;
+    clicksDeleted: number;
+    visitorsDeleted: number;
+  };
+  error?: string;
+}
+
 export default function Analytics() {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [days, setDays] = useState(30);
+  
+  // Cleanup state
+  const [cleanupYears, setCleanupYears] = useState(2);
+  const [cleanupMonths, setCleanupMonths] = useState(0);
+  const [cleanupDays, setCleanupDays] = useState(0);
+  const [cleanupLoading, setCleanupLoading] = useState(false);
+  const [cleanupResult, setCleanupResult] = useState<CleanupResult | null>(null);
 
   const fetchAnalytics = () => {
     setLoading(true);
@@ -50,6 +69,39 @@ export default function Analytics() {
         setError('Unauthorized');
         setLoading(false);
       });
+  };
+
+  const handleCleanup = async () => {
+    setCleanupLoading(true);
+    setCleanupResult(null);
+    
+    try {
+      const response = await fetch('/cleanup-old-data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          years: cleanupYears || undefined,
+          months: cleanupMonths || undefined,
+          days: cleanupDays || undefined,
+        }),
+      });
+      
+      const result: CleanupResult = await response.json();
+      setCleanupResult(result);
+      
+      if (result.success) {
+        // Refresh analytics after cleanup
+        fetchAnalytics();
+      }
+    } catch (error) {
+      setCleanupResult({
+        success: false,
+        message: 'Error performing cleanup',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+    } finally {
+      setCleanupLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -98,6 +150,96 @@ export default function Analytics() {
           days
         </label>
         <button onClick={fetchAnalytics} style={{ marginLeft: 12 }}>Refresh</button>
+      </div>
+
+      {/* Data Cleanup Section */}
+      <div style={{ 
+        border: '1px solid #e0e0e0', 
+        borderRadius: '8px', 
+        padding: '20px', 
+        marginBottom: '30px',
+        backgroundColor: '#f9f9f9'
+      }}>
+        <h2 style={{ margin: '0 0 20px 0', color: '#333' }}>Data Cleanup</h2>
+        <p style={{ margin: '0 0 15px 0', color: '#666' }}>
+          Delete data older than the specified time period. This action cannot be undone.
+        </p>
+        
+        <div style={{ display: 'flex', gap: '15px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div>
+            <label style={{ marginRight: '5px' }}>Years:</label>
+            <input
+              type="number"
+              min={0}
+              value={cleanupYears}
+              onChange={e => setCleanupYears(Number(e.target.value))}
+              style={{ width: 60 }}
+            />
+          </div>
+          <div>
+            <label style={{ marginRight: '5px' }}>Months:</label>
+            <input
+              type="number"
+              min={0}
+              max={11}
+              value={cleanupMonths}
+              onChange={e => setCleanupMonths(Number(e.target.value))}
+              style={{ width: 60 }}
+            />
+          </div>
+          <div>
+            <label style={{ marginRight: '5px' }}>Days:</label>
+            <input
+              type="number"
+              min={0}
+              max={30}
+              value={cleanupDays}
+              onChange={e => setCleanupDays(Number(e.target.value))}
+              style={{ width: 60 }}
+            />
+          </div>
+          <button
+            onClick={handleCleanup}
+            disabled={cleanupLoading}
+            style={{
+              background: cleanupLoading ? '#ccc' : '#dc3545',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              padding: '8px 16px',
+              cursor: cleanupLoading ? 'not-allowed' : 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            {cleanupLoading ? 'Cleaning...' : 'Clean Old Data'}
+          </button>
+        </div>
+        
+        {cleanupResult && (
+          <div style={{ 
+            marginTop: '15px', 
+            padding: '10px', 
+            borderRadius: '4px',
+            backgroundColor: cleanupResult.success ? '#d4edda' : '#f8d7da',
+            color: cleanupResult.success ? '#155724' : '#721c24',
+            border: `1px solid ${cleanupResult.success ? '#c3e6cb' : '#f5c6cb'}`
+          }}>
+            <strong>{cleanupResult.message}</strong>
+            {cleanupResult.details && (
+              <div style={{ marginTop: '5px', fontSize: '14px' }}>
+                Time offset: {cleanupResult.details.timeOffset}<br/>
+                Visits deleted: {cleanupResult.details.visitsDeleted}<br/>
+                Clicks deleted: {cleanupResult.details.clicksDeleted}<br/>
+                Visitors deleted: {cleanupResult.details.visitorsDeleted}
+              </div>
+            )}
+            {cleanupResult.error && (
+              <div style={{ marginTop: '5px', fontSize: '14px' }}>
+                Error: {cleanupResult.error}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {data && (

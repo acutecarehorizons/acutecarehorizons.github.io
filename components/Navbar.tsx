@@ -25,15 +25,14 @@ function getOrCreateVisitorId() {
   return visitorId;
 }
 
-async function trackVisit(withGeo = false) {
+async function trackVisit() {
   const visitorId = getOrCreateVisitorId();
+  const withGeo = localStorage.getItem('cookiesAccepted');
   await fetch('/track-visit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       visitorId,
-      userAgent: navigator.userAgent,
-      ip: '', // Optionally leave blank; backend can use request headers
       withGeo,
     }),
   });
@@ -62,7 +61,7 @@ const Navbar: React.FC = () => {
     if (router.pathname === '/link') return;
     if (!window.name) {
       window.name = 'ach-tab-' + crypto.randomUUID();
-      trackVisit(false);
+      trackVisit();
     }
   }, [router.pathname]);
   

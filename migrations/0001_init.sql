@@ -6,7 +6,6 @@ CREATE TABLE visitors (
 CREATE TABLE visits (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     visitor_id TEXT,
-    user_agent TEXT,
     geolocation_json TEXT,
     created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
     FOREIGN KEY(visitor_id) REFERENCES visitors(id)
@@ -25,7 +24,6 @@ CREATE TABLE link_clicks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     visitor_id TEXT,
     link_id INTEGER,
-    user_agent TEXT,
     geolocation_json TEXT,
     created_at TEXT DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
     FOREIGN KEY(visitor_id) REFERENCES visitors(id),
@@ -35,3 +33,5 @@ CREATE TABLE link_clicks (
 CREATE INDEX idx_link_clicks_visitor ON link_clicks(visitor_id);
 CREATE INDEX idx_link_clicks_link ON link_clicks(link_id);
 CREATE INDEX idx_link_clicks_created_at ON link_clicks(created_at);
+CREATE INDEX idx_visits_created_at ON visits(created_at);
+CREATE INDEX idx_links_created_at ON links(created_at);

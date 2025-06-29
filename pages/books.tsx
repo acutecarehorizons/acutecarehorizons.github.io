@@ -56,10 +56,10 @@ const Books: React.FC = () => {
       return books.filter(book => book.edition === '2025');
     }
     if (selectedFilter === 'pa') {
-      return books.filter(book => book.targetAudience === 'physician-assistants');
+      return books.filter(book => book.targetAudience === 'physician-assistants' && book.edition === '2025');
     }
     if (selectedFilter === 'np') {
-      return books.filter(book => book.targetAudience === 'nurse-practitioners');
+      return books.filter(book => book.targetAudience === 'nurse-practitioners' && book.edition === '2025');
     }
     if (selectedFilter === '6th') {
       return books.filter(book => book.edition === '6th');
@@ -198,6 +198,7 @@ const Books: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100%',
+                minWidth: '450px',
                 transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
                 '&:hover': {
                   transform: 'translateY(-4px)',
@@ -309,7 +310,7 @@ const Books: React.FC = () => {
                 </List>
               </CardContent>
               
-              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', justifyContent: 'center', gap: 2 }}>
+              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', justifyContent: 'space-between' }}>
                 <Button
                   variant="contained"
                   color="secondary"
@@ -317,7 +318,7 @@ const Books: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   size="large"
-                  sx={{  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
+                  sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
                 >
                   <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 32, width: 'auto', display: 'block'}} />
                 </Button>

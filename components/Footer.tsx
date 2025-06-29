@@ -50,6 +50,7 @@ const Footer: React.FC = () => {
               <Link component={NextLink} href="/books" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Books</Link>
               <Link component={NextLink} href="/about" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>About</Link>
               <Link component={NextLink} href="/contact" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Contact</Link>
+              <Link component={NextLink} href="/privacy-policy" color="text.secondary" sx={{ textDecoration: 'none', '&:hover': { color: 'primary.main' } }}>Privacy Policy</Link>
             </Box>
           </Box>
         </Box>
