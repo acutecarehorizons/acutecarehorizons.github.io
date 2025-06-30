@@ -78,12 +78,37 @@ export default function MarketingTemplatesViewer() {
   }, [selectedTemplate]);
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: 24 }}>
-      <h1>Marketing Email Template Viewer</h1>
+    <div
+      style={{
+        maxWidth: '100%',
+        width: 'min(1400px, 100vw)',
+        margin: '0 auto',
+        padding: 24,
+        boxSizing: 'border-box',
+      }}
+    >
+      <h1>Marketing Email Templates</h1>
       
-      <div style={{ display: 'flex', gap: 24, marginTop: 24 }}>
+      <div
+        className="marketing-flex"
+        style={{
+          display: 'flex',
+          gap: 24,
+          marginTop: 24,
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+        }}
+      >
         {/* Template List */}
-        <div style={{ width: 300, flexShrink: 0 }}>
+        <div
+          className="marketing-sidebar"
+          style={{
+            width: 320,
+            minWidth: 220,
+            flexShrink: 0,
+            marginBottom: 24,
+          }}
+        >
           <h3 style={{ marginTop: 0 }}>Templates</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {templates.map((template) => (
@@ -97,7 +122,7 @@ export default function MarketingTemplatesViewer() {
                   background: selectedTemplate.id === template.id ? '#f0f8ff' : 'white',
                   cursor: 'pointer',
                   textAlign: 'left',
-                  transition: 'all 0.2s'
+                  transition: 'all 0.2s',
                 }}
               >
                 <div style={{ fontWeight: 600, color: '#333', marginBottom: 4 }}>
@@ -112,7 +137,14 @@ export default function MarketingTemplatesViewer() {
         </div>
 
         {/* Template Preview */}
-        <div style={{ flex: 1 }}>
+        <div
+          className="marketing-preview"
+          style={{
+            flex: 1,
+            minWidth: 0,
+            maxWidth: '100%',
+          }}
+        >
           <h3 style={{ marginTop: 0 }}>Preview: {selectedTemplate.name}</h3>
           {loading && <p>Loading template...</p>}
           {error && <p style={{ color: 'red' }}>Error: {error}</p>}
@@ -127,6 +159,22 @@ export default function MarketingTemplatesViewer() {
           )}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 900px) {
+          .marketing-flex {
+            flex-direction: column !important;
+          }
+          .marketing-sidebar {
+            width: 100% !important;
+            min-width: 0 !important;
+            margin-bottom: 16px !important;
+            order: 0;
+          }
+          .marketing-preview {
+            order: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 } 
