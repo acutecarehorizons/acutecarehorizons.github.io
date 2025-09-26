@@ -59,6 +59,8 @@ export default function LinkRedirect() {
     if (book) {
       if (linkType === 'amazon') destination = book.amazonUrl;
       if (linkType === 'google') destination = book.googlePlayUrl || null;
+      if (linkType === 'payhip') destination = book.payHipUrl || null;
+      if (linkType === 'apple') destination = book.appleUrl || null;
     }
 
     if (destination) {

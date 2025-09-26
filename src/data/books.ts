@@ -7,6 +7,8 @@ export interface Book {
   targetAudience: 'nurse-practitioners' | 'physician-assistants' | 'both';
   amazonUrl: string;
   googlePlayUrl?: string;
+  payHipUrl?: string;
+  appleUrl?: string;
   features: string[];
   edition: string;
 }
@@ -15,7 +17,7 @@ export const books: Book[] = [
   {
     id: 'np-acp',
     title: 'Nurse Practitioner Acute Care Protocols',
-    subtitle: '6th Edition',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'Comprehensive acute care protocols specifically designed for nurse practitioners. Concise and fast-reading resources in a bulleted outline format for family practice, urgent care, and emergency medicine.',
     coverImage: '/images/npacp-front_small.png',
     targetAudience: 'nurse-practitioners',
@@ -27,12 +29,12 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '6th'
+    edition: 'Paper'
   },
   {
     id: 'pa-acp',
     title: 'Physician Assistant Acute Care Protocols',
-    subtitle: '6th Edition',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'Essential acute care protocols tailored for physician assistants. Provides foundational information and serves as a valuable resource for both recent graduates and experienced practitioners.',
     coverImage: '/images/paacp-front_small.png',
     targetAudience: 'physician-assistants',
@@ -44,16 +46,16 @@ export const books: Book[] = [
       'Consultation guidelines',
       'Emergency department focused'
     ],
-    edition: '6th'
+    edition: 'Paper'
   },
   {
     id: 'np-pg',
-    title: 'The Nurse Practitioner Practice Guide',
-    subtitle: '6th Edition',
+    title: 'Nurse Practitioner Practice Guide',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'A comprehensive practice guide that helps direct diagnosis, treatment and details criteria for either admission/discharge or further consultation. An important "go-to" text for day-to-day practice.',
     coverImage: '/images/np-pg_small.png',
     targetAudience: 'nurse-practitioners',
-    amazonUrl: 'https://www.amazon.com/s?k=%22The+Nurse+Practitioner+Practice+Guide+-+SIXTH+EDITION%22+%22Donald+Correll%22&i=stripbooks&crid=3RJUF3H8FO3I7&sprefix=the+nurse+practitioner+practice+guide+-+sixth+edition+donald+correll+%2Cstripbooks%2C330&ref=nb_sb_noss',
+    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Guide-Donald-Correll/dp/1737738988/ref=mp_s_a_1_1?crid=28VBTJPQXN8RS&dib=eyJ2IjoiMSJ9.7hef00Ew-kiR6lXtkdWS87e0D0LcM_1GUh5nA7qK-cAdAlQ4zl7cYND--mwI7Ge81ost08_voAI2o4JRiRInR8V7SXM9JCQRUm-ZoRDucw7dvBSGTmdVCm9SJ130KNt75WM_1aYW4Dco7pxsDbSnZqfSwUws__Nfu9Kw6WZnoqAzfm-VZYjCr50XbiUZGTadII5VQ0w78-S_Ad19sDU8EQ.20YVetcxc_P1DniXudPnHKqA2PIOJEfV7SxXZdNAQWA&dib_tag=se&keywords=nurse+practitioner+guide+donald+correll&qid=1758745440&sprefix=donald+correll+%2Caps%2C129&sr=8-1',
     features: [
       'Day-to-day practice guidance',
       'Readable font and format',
@@ -61,17 +63,19 @@ export const books: Book[] = [
       'Quick in-and-out reference',
       'Discharge criteria focus'
     ],
-    edition: '6th'
+    edition: 'Paper'
   },
   {
     id: 'pa-protocols-2025',
     title: 'Physician Assistant Protocols',
-    subtitle: 'For Emergency Departments, Urgent Care Centers and Family Practices',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This book comprises a compendium of practice guides created for physician assistants. Over 290 concise, fast-reading topics for physician assistants working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
     coverImage: '/images/pa-protocols-2025.jpg',
     targetAudience: 'physician-assistants',
     amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Emergency-Departments-ebook/dp/B0FBZ56BJW/ref=sr_1_1?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751215199&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-1',
     googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Physician_Assistant_Protoc?id=yMJoEQAAQBAJ&hl=en_US',
+    payHipUrl: 'https://payhip.com/b/4ZjOR',
+    appleUrl: 'https://books.apple.com/us/book/physician-assistant-protocols/id6751246941',
     features: [
       'Bulleted outline format',
       'Evidence-based information',
@@ -79,7 +83,7 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '2025'
+    edition: 'eBook'
   },
   {
     id: 'pa-acp-dm-2025',
@@ -96,7 +100,7 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '2025'
+    edition: 'eBook'
   },
   {
     id: 'pa-ped-acp-2025',
@@ -113,7 +117,7 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '2025'
+    edition: 'eBook'
   },
   {
     id: 'np-ped-acp-2025',
@@ -130,12 +134,12 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '2025'
+    edition: 'eBook'
   },
   {
     id: 'np-acp-dm-2025',
     title: 'Nurse Practitioner Acute Care Protocols and Disease Management',
-    subtitle: 'For Emergency Departments, Urgent Care Centers and Family Practices',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This is a compendium of acute care protocols and disease management guides created for the Nurse Practitioner. Over 290 concise, fast-reading protocols and disease management sections for Nurse Practitioners working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format, for the purpose of furthering the relationship between the Nurse Practitioner and the Physician and for improving patient care and safety.',
     coverImage: '/images/np-acp-dm-2025.jpg',
     targetAudience: 'nurse-practitioners',
@@ -147,7 +151,7 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '2025'
+    edition: 'eBook'
   },
   {
     id: 'ac-bedside-us-2025',
@@ -164,17 +168,19 @@ export const books: Book[] = [
       'Not a replacement for formal ultrasound',
       'Educational resource for providers'
     ],
-    edition: '2025'
+    edition: 'eBook'
   },
   {
     id: 'np-guide-2025',
     title: 'Nurse Practitioner Guide',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This book comprises a compendium of practice guides created for nurse practitioners. Over 290 concise, fast-reading topics for nurse practitioners working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline, double column format for improving patient care and safety.',
-    coverImage: '/images/np-pg-2025.jpg',
+    coverImage: '/images/np-pg_small.jpg',
     targetAudience: 'nurse-practitioners',
     amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Guide-Emergency-Departments-ebook/dp/B0FBJ5PSTT/ref=sr_1_7?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-7',
     googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Nurse_Practitioner_Guide?id=p71oEQAAQBAJ&hl=en_US',
+    payHipUrl: 'https://payhip.com/b/dvJTC',
+    appleUrl: 'https://books.apple.com/us/book/nurse-practitioner-guide/id6751246325',
     features: [
       'Bulleted outline format',
       'Evidence-based information',
@@ -182,7 +188,7 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: '2025'
+    edition: 'eBook'
   }
 ];
 

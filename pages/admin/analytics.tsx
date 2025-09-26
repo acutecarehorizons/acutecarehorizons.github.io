@@ -117,6 +117,10 @@ export default function Analytics() {
           return 'Generic Amazon Search';
         case 'google_play':
           return 'Generic Google Play Search';
+        case 'payhip':
+          return 'Generic Payhip Search';
+        case 'apple':
+          return 'Generic Apple Search';
         default:
           return `Generic ${linkType}`;
       }
@@ -131,6 +135,10 @@ export default function Analytics() {
         return 'Amazon';
       case 'google_play':
         return 'Google Play';
+      case 'payhip':
+        return 'Payhip';
+      case 'apple':
+        return 'Appel Books';
       default:
         return linkType;
     }

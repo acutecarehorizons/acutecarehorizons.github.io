@@ -31,7 +31,7 @@ const getOrCreateVisitorId = () => {
 };
 
 // Helper function to track generic link clicks
-const trackGenericLink = async (linkType: 'amazon' | 'google_play', destination: string) => {
+const trackGenericLink = async (linkType: 'amazon' | 'google_play' | 'payhip' | 'apple', destination: string) => {
   const visitorId = getOrCreateVisitorId();
   const withGeo = localStorage.getItem('cookiesAccepted');
   
@@ -75,6 +75,20 @@ const Home: React.FC = () => {
   const handleGooglePlayClick = async () => {
     const destination = "https://play.google.com/store/search?q=%22donald%20correll%22%20facep&c=books&hl=en_US";
     await trackGenericLink('google_play', destination);
+    window.open(destination, '_blank', 'noopener,noreferrer');
+  };
+
+  // Handle Apple button click
+  const handleAppleClick = async () => {
+    const destination = "https://payhip.com/AcuteCareHorizons";
+    await trackGenericLink('payhip', destination);
+    window.open(destination, '_blank', 'noopener,noreferrer');
+  };
+
+  // Handle Payhip button click
+  const handlePayhipClick = async () => {
+    const destination = "https://payhip.com/AcuteCareHorizons";
+    await trackGenericLink('apple', destination);
     window.open(destination, '_blank', 'noopener,noreferrer');
   };
 
@@ -133,6 +147,7 @@ const Home: React.FC = () => {
               size="large"
               startIcon={<BookIcon />}
               sx={{
+                minWidth: 0, p: 0, height: 41, marginTop: -.2,
                 bgcolor: theme.palette.secondary.main,
                 color: 'white',
                 py: 2,
@@ -150,18 +165,36 @@ const Home: React.FC = () => {
                   color="secondary"
                   onClick={handleAmazonClick}
                   size="large"
-                  sx={{  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main, minWidth: 0 }}
+                  sx={{  minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main}}
                 >
-                  <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 32, width: 'auto', display: 'block'}} />
+                  <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 40, padding: 5, width: 'auto', display: 'block'}} />
                 </Button>
                 <Button
                   variant="outlined"
                   color="inherit"
                   onClick={handleGooglePlayClick}
                   size="large"
-                  sx={{ minWidth: 0, p: 0, height: 64, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                  sx={{ minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                 >
-                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 66, width: 'auto', display: 'block' }} />
+                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 40, width: 'auto', display: 'block' }} />
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  onClick={handleAppleClick}
+                  size="large"
+                  sx={{ minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                >
+                  <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ maxHeight: 41, width: 'auto', display: 'block'}} />
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  onClick={handlePayhipClick}
+                  size="large"
+                  sx={{ minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                >
+                  <img src="/images/payhip-pdf.png" alt="Get the PDF" style={{ maxHeight: 39, width: 'auto', display: 'block', borderRadius: 8 }} />
                 </Button>
           </Box>
         </Container>
@@ -193,7 +226,7 @@ const Home: React.FC = () => {
             gap: 4,
           }}
         >
-          {books.filter(book => book.edition === '2025').map((book) => (
+          {books.filter(book => book.edition === 'eBook').map((book) => (
             <Card
               key={book.id}
               sx={{

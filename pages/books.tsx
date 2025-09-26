@@ -33,7 +33,7 @@ import { useRouter } from 'next/router';
 const Books: React.FC = () => {
   const router = useRouter();
   const { book: bookQuery } = router.query;
-  const [selectedFilter, setSelectedFilter] = useState(bookQuery ? 'book' : '2025');
+  const [selectedFilter, setSelectedFilter] = useState(bookQuery ? 'book' : 'eBook');
   const [selectedBookId, setSelectedBookId] = useState(bookQuery || '');
   const [expandedDesc, setExpandedDesc] = useState<string | null>(null);
   const theme = useTheme();
@@ -43,7 +43,7 @@ const Books: React.FC = () => {
     const value = event.target.value as string;
     setSelectedFilter(value);
     setSelectedBookId('');
-    if (value === '2025' || value === 'pa' || value === 'np' || value === '6th') {
+    if (value === 'eBook' || value === 'Paper') {
       router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
     }
   };
@@ -52,17 +52,11 @@ const Books: React.FC = () => {
     if (selectedFilter === 'book' && selectedBookId) {
       return books.filter(book => book.id === selectedBookId);
     }
-    if (selectedFilter === '2025') {
-      return books.filter(book => book.edition === '2025');
+    if (selectedFilter === 'eBook') {
+      return books.filter(book => book.edition === 'eBook');
     }
-    if (selectedFilter === 'pa') {
-      return books.filter(book => book.targetAudience === 'physician-assistants' && book.edition === '2025');
-    }
-    if (selectedFilter === 'np') {
-      return books.filter(book => book.targetAudience === 'nurse-practitioners' && book.edition === '2025');
-    }
-    if (selectedFilter === '6th') {
-      return books.filter(book => book.edition === '6th');
+    if (selectedFilter === 'Paper') {
+      return books.filter(book => book.edition === 'Paper');
     }
     return books;
   };
@@ -153,7 +147,7 @@ const Books: React.FC = () => {
                 color="primary"
                 startIcon={<ArrowBackIcon />}
                 onClick={() => {
-                  setSelectedFilter('2025');
+                  setSelectedFilter('eBook');
                   setSelectedBookId('');
                   router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
                 }}
@@ -172,10 +166,8 @@ const Books: React.FC = () => {
               displayEmpty
               inputProps={{ 'aria-label': 'Book filter' }}
             >
-              <MenuItem value={'2025'}>2025 Editions (New)</MenuItem>
-              <MenuItem value={'pa'}>Physician Assistant Books</MenuItem>
-              <MenuItem value={'np'}>Nurse Practitioner Books</MenuItem>
-              <MenuItem value={'6th'}>6th Editions (Legacy)</MenuItem>
+              <MenuItem value={'eBook'}>eBooks</MenuItem>
+              <MenuItem value={'Paper'}>Paper Textbooks</MenuItem>
             </Select>
           )}
         </Box>
@@ -311,29 +303,57 @@ const Books: React.FC = () => {
                 </List>
               </CardContent>
               
-              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', justifyContent: 'space-between' }}>
-                <Button
-                  color="secondary"
-                  href={`/link?bookId=${book.id}&linkType=amazon`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="large"
-                  sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', minWidth: 0 }}
-                >
-                  <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 32, width: 'auto', display: 'block'}} />
-                </Button>
-                {book.googlePlayUrl && (
+              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', flexDirection:'column', justifyContent: 'space-between' }}>
+                <div style={{display: 'flex', gap: 20, marginTop: 'auto', justifyContent: 'space-between', padding:3, paddingTop:0}}>
+                  {book.googlePlayUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=google`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                    >
+                    <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 40, width: 'auto', display: 'block' }} />
+                    </Button>
+                  )}
+                  {book.appleUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=apple`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                    >
+                    <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ maxHeight: 50, width: 'auto', display: 'block' }} />
+                    </Button>
+                  )}
+                </div>
+                <div style={{display: 'flex', gap: 2, marginTop: 'auto', justifyContent: 'space-between', padding:0, marginRight:20}}>
                   <Button
-                    color="inherit"
-                    href={`/link?bookId=${book.id}&linkType=google`}
+                    color="secondary"
+                    href={`/link?bookId=${book.id}&linkType=amazon`}
                     target="_blank"
                     rel="noopener noreferrer"
                     size="large"
-                    sx={{ minWidth: 0, p: 0, height: 42, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', minWidth: 0 }}
                   >
-                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 42, width: 'auto', display: 'block' }} />
+                    <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 38, width: 'auto', display: 'block'}} />
                   </Button>
-                )}
+                  {book.payHipUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=payhip`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                    >
+                    <img src="/images/payhip-pdf.png" alt="Get the PDF" style={{ maxHeight: 50, width: 'auto', display: 'block' }} />
+                    </Button>
+                  )}
+                </div>
               </CardActions>
             </Card>
           ))}

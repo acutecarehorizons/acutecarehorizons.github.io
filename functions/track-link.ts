@@ -12,7 +12,7 @@ export interface Env {
   interface TrackLinkPayload {
     visitorId?: string;
     bookId: string;
-    linkType: 'amazon' | 'google';
+    linkType: 'amazon' | 'google' | 'payhip' | 'apple';
     withGeo: boolean;
   }
   
