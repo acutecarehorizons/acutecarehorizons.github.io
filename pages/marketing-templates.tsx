@@ -55,6 +55,12 @@ const templates: Template[] = [
     name: 'NPACE Email Blast',
     description: 'NPACE Email Blast',
     file: 'npace-2025.html'
+  },
+  {
+    id: 'compact-npace-2025',
+    name: 'Compact NPACE Email Blast',
+    description: 'Compact NPACE Email Blast',
+    file: 'compact-npace-2025.html'
   }
 ];
 

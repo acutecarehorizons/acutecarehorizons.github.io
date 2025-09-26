@@ -37,12 +37,24 @@
     h1 {
       font-size: 24px;
       margin: 0;
-      padding: 10px 0;
+      padding-bottom: 5px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
     h2 {
-      font-size: 20px;
+      font-size: 18px;
       color: #24678d;
-      margin-top: 30px;
+      margin: 25px 0 15px 0;
+      text-align: center;
+      position: relative;
+    }
+    h2:after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #24678d;
+      margin: 8px auto 0;
+      border-radius: 2px;
     }
     .book {
       margin-bottom: 30px;
@@ -75,14 +87,47 @@
     .features li {
       margin-bottom: 5px;
     }
+    .cta-section {
+      background: #24678d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin: 25px -20px;
+      border-radius: 0;
+    }
     .cta-button {
       display: inline-block;
-      background-color: #24678d;
-      color: white;
-      padding: 10px 15px;
+      background-color: white;
+      color: #24678d;
+      font-weight: bold;
+      padding: 10px 20px;
       text-decoration: none;
       border-radius: 5px;
-      margin-top: 15px;
+      margin-top: 10px;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .testimonials {
+      background: linear-gradient(to right, #f8f9fa, #e9f1f5);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 25px 0;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .testimonials::before {
+      content: '"';
+      font-size: 60px;
+      color: rgba(36,103,141,0.1);
+      position: absolute;
+      top: -15px;
+      left: 10px;
+    }
+    .testimonials p {
+      font-style: italic;
+      margin: 8px 0;
+      position: relative;
+      z-index: 1;
     }
     .store-links {
       display: block;
@@ -115,7 +160,7 @@
 
       <p>Our concise, fast-reading topics are perfect for practitioners in emergency medicine, urgent care, and family practice settings. Each resource provides differential diagnosis, pertinent clinical facts, and practical guidance in a bulleted outline format to enhance your clinical decision-making and patient safety.</p>
 
-      <h2>Featured eBooks</h2>
+      <h2>Featured Resources for Nurse Practitioners & Physician Assistants</h2>
 
       <!-- Nurse Practitioner Guide -->
       <div class="book">
@@ -299,22 +344,27 @@
       </div>
 
       <h2>What Our Readers Are Saying</h2>
-      <div style="font-style: italic; margin: 20px 0; padding: 15px; background-color: #f5f5f5; border-left: 4px solid #24678d;">
-        "After receiving this book, I have found it to be an important 'go-to' text for day-to-day practice in the emergency department."<br><br>
-        "I like the bulleted format and readable font. It gets you in and out quick."<br><br>
-        "I find the book to be helpful in practice. It provides foundational information that serves as a guide and it has been a valuable resource for me."<br><br>
-        "I am using the practice guide daily and very much appreciate how valuable it is."<br><br>
+      <div class="testimonials">
+        <p>"An important 'go-to' text for day-to-day practice in the emergency department."</p>
+        <p>"I like the bulleted format and readable font. It gets you in and out quick."</p>
+        <p>"I am using the practice guide daily and very much appreciate how valuable it is."</p>
       </div>
 
-      <div style="text-align: center; margin-top: 30px;">
-        <p>Prefer paper textbooks?</p>
-        <a href="https://acutecarehorizons.com/books?paper=true" class="cta-button" target="_blank" rel="noopener noreferrer">VIEW OUR PAPER BOOKS</a>
+
+      <div class="cta-section">
+        <h3 style="margin-top: 0;">Prefer paper textbooks?</h3>
+        <p>We also offer a collection of books in print format</p>
+        <a href="https://acutecarehorizons.com/books?paper=true" class="cta-button" target="_blank">VIEW PAPER BOOKS</a>
       </div>
 
       <p style="margin-top: 30px;">Stay current in your practice with these essential resources. Our books are designed to help you deliver the highest quality of care efficiently and effectively.</p>
 
       <p>Best regards,<br>
       <strong>Acute Care Horizons Team</strong></p>
+      
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="https://acutecarehorizons.com" style="color: #24678d; text-decoration: none; font-weight: bold;" target="_blank">Visit our website for complete details</a>
+      </div>
     </div>
 
     <div class="footer">

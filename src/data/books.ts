@@ -88,7 +88,7 @@ export const books: Book[] = [
   {
     id: 'pa-acp-dm-2025',
     title: 'Physician Assistant Acute Care Protocols and Disease Management',
-    subtitle: 'Physician Assistant Acute Care Protocols and Disease Management',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This eBook is a compendium of acute care protocols and disease management guides created for the Physician Assistant. Over 290 concise, fast-reading protocols and disease management sections for Physician Assistants working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format for the purpose of furthering the relationship between the Nurse Practitioner and the Physician and for improving patient care and safety.',
     coverImage: '/images/pa-acp-dm-2025.jpg',
     targetAudience: 'physician-assistants',
