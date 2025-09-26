@@ -80,15 +80,15 @@ const Home: React.FC = () => {
 
   // Handle Apple button click
   const handleAppleClick = async () => {
-    const destination = "https://payhip.com/AcuteCareHorizons";
-    await trackGenericLink('payhip', destination);
+    const destination = "https://books.apple.com/us/author/donald-c-correll-m-d-facep/id587116964";
+    await trackGenericLink('apple', destination);
     window.open(destination, '_blank', 'noopener,noreferrer');
   };
 
   // Handle Payhip button click
   const handlePayhipClick = async () => {
     const destination = "https://payhip.com/AcuteCareHorizons";
-    await trackGenericLink('apple', destination);
+    await trackGenericLink('payhip', destination);
     window.open(destination, '_blank', 'noopener,noreferrer');
   };
 
