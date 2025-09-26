@@ -32,7 +32,7 @@ import { useRouter } from 'next/router';
 
 const Books: React.FC = () => {
   const router = useRouter();
-  const { book: bookQuery } = router.query;
+  const { book: bookQuery, paper: paperQuery } = router.query;
   const [selectedFilter, setSelectedFilter] = useState(bookQuery ? 'book' : 'eBook');
   const [selectedBookId, setSelectedBookId] = useState(bookQuery || '');
   const [expandedDesc, setExpandedDesc] = useState<string | null>(null);
@@ -62,12 +62,15 @@ const Books: React.FC = () => {
   };
 
   useEffect(() => {
-    if (bookQuery) {
+    if (bookQuery && !paperQuery) {
       setSelectedFilter('book');
       setSelectedBookId(bookQuery as string);
       setExpandedDesc(bookQuery as string);
     }
-  }, [bookQuery]);
+    if(paperQuery == "true"){
+      setSelectedFilter('Paper');
+    }
+  }, [bookQuery, paperQuery]);
 
   const getAudienceIcon = (audience: string) => {
     switch (audience) {

@@ -66,22 +66,49 @@ export default function LinkRedirect() {
     if (destination) {
       const visitorId = getOrCreateVisitorId();
       const withGeo = localStorage.getItem('cookiesAccepted');
-      // Track the click
-      fetch('/track-link', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+
+      // Start redirection immediately - no need to wait for tracking
+      const redirectTimeout = setTimeout(() => {
+        window.location.href = destination!;
+      }, 50); // Small delay to ensure tracking has time to start
+
+      // Track the click asynchronously using sendBeacon if available
+      if (navigator.sendBeacon) {
+        // SendBeacon is designed for analytics and works even if the page unloads
+        const trackData = new Blob([JSON.stringify({
           visitorId,
           bookId,
           linkType,
           userAgent: navigator.userAgent,
-          ip: '', // Let backend use headers
+          ip: '',
           withGeo
-        }),
-      }).finally(() => {
-        // Redirect after tracking
+        })], {type: 'application/json'});
+
+        navigator.sendBeacon('/track-link', trackData);
+        // Clear timeout as we've already initiated the beacon
+        clearTimeout(redirectTimeout);
         window.location.href = destination!;
-      });
+      } else {
+        // Fallback to fetch for browsers without sendBeacon
+        // Using keepalive to ensure request completes even if page unloads
+        fetch('/track-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            visitorId,
+            bookId,
+            linkType,
+            userAgent: navigator.userAgent,
+            ip: '',
+            withGeo
+          }),
+          keepalive: true // This allows the request to complete even if page navigates away
+        });
+
+        // Don't wait for the response, redirect immediately
+        clearTimeout(redirectTimeout);
+        window.location.href = destination!;
+      }
     } else {
       // Invalid book or link type, redirect to home
       router.replace('/');

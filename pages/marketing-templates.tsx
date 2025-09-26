@@ -49,6 +49,12 @@ const templates: Template[] = [
     name: 'Urgency/Countdown',
     description: 'Urgency-based campaign creating FOMO about falling behind without current protocols',
     file: 'urgency-2025.html'
+  },
+  {
+    id: 'npace-2025',
+    name: 'NPACE Email Blast',
+    description: 'NPACE Email Blast',
+    file: 'npace-2025.html'
   }
 ];
 
