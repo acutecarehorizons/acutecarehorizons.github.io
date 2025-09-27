@@ -32,7 +32,7 @@ const theme = createTheme({
       main: '#ff8400',
       light: '#ffab40',
       dark: '#e97901',
-    },
+    }
   },
   typography: {
     fontFamily: '"Lato", "Roboto", "Helvetica", "Arial", sans-serif',

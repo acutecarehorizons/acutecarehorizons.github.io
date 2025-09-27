@@ -106,9 +106,15 @@ const Books: React.FC = () => {
           color: 'white',
           py: { xs: 6, md: 8 },
           textAlign: 'center',
+          width: '100%',
+          boxSizing: 'border-box',
+          margin: 0,
+          left: 0,
+          right: 0,
+          position: 'relative',
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 }, width: '100%' }}>
           <Typography
             variant="h1"
             component="h1"
@@ -194,7 +200,7 @@ const Books: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100%',
-                minWidth: '450px',
+                minWidth: 'auto',
                 transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
                 '&:hover': {
                   transform: 'translateY(-4px)',
@@ -254,7 +260,7 @@ const Books: React.FC = () => {
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
+                    overflow: 'clip',
                     minHeight: '2.4em',
                   }}
                 >
@@ -306,7 +312,7 @@ const Books: React.FC = () => {
                 </List>
               </CardContent>
               
-              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', flexDirection:'column', justifyContent: 'space-between' }}>
+              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', flexDirection:'column', justifyContent: 'space-between', scale: {xs: '.65', md: '.8', lg: '.8'}}}>
                 <div style={{display: 'flex', gap: 20, marginTop: 'auto', justifyContent: 'space-between', padding:3, paddingTop:0}}>
                   {book.googlePlayUrl && (
                     <Button
