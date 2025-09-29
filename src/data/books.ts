@@ -53,7 +53,7 @@ export const books: Book[] = [
     title: 'Nurse Practitioner Practice Guide',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'A comprehensive practice guide that helps direct diagnosis, treatment and details criteria for either admission/discharge or further consultation. An important "go-to" text for day-to-day practice.',
-    coverImage: '/images/np-pg_small.png',
+    coverImage: '/images/np-pg_small.png?ver=2025-09',
     targetAudience: 'nurse-practitioners',
     amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Guide-Donald-Correll/dp/1737738988/ref=mp_s_a_1_1?crid=28VBTJPQXN8RS&dib=eyJ2IjoiMSJ9.7hef00Ew-kiR6lXtkdWS87e0D0LcM_1GUh5nA7qK-cAdAlQ4zl7cYND--mwI7Ge81ost08_voAI2o4JRiRInR8V7SXM9JCQRUm-ZoRDucw7dvBSGTmdVCm9SJ130KNt75WM_1aYW4Dco7pxsDbSnZqfSwUws__Nfu9Kw6WZnoqAzfm-VZYjCr50XbiUZGTadII5VQ0w78-S_Ad19sDU8EQ.20YVetcxc_P1DniXudPnHKqA2PIOJEfV7SxXZdNAQWA&dib_tag=se&keywords=nurse+practitioner+guide+donald+correll&qid=1758745440&sprefix=donald+correll+%2Caps%2C129&sr=8-1',
     features: [

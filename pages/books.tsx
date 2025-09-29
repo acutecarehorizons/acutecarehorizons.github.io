@@ -43,8 +43,11 @@ const Books: React.FC = () => {
     const value = event.target.value as string;
     setSelectedFilter(value);
     setSelectedBookId('');
-    if (value === 'eBook' || value === 'Paper') {
+    if (value === 'eBook') {
       router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
+    }
+    else if (value === 'Paper') {
+      router.replace({ pathname: '/books', query: { paper: true } }, undefined, { shallow: true });
     }
   };
 
