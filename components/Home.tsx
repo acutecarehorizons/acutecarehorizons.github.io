@@ -147,11 +147,13 @@ const Home: React.FC = () => {
               size="large"
               startIcon={<BookIcon />}
               sx={{
-                minWidth: 0, p: 0, height: 41, marginTop: -.2,
+                minWidth: 0, 
+                p: 0, 
                 bgcolor: theme.palette.secondary.main,
                 color: 'white',
                 py: 2,
                 px: 4,
+                height: 55,
                 fontSize: '1.1rem',
                 '&:hover': {
                   bgcolor: theme.palette.secondary.dark,
@@ -161,40 +163,40 @@ const Home: React.FC = () => {
               View Our Books
             </Button>
             <Button
-                  variant="contained"
-                  color="secondary"
+                  variant="outlined"
+                  color="inherit"
                   onClick={handleAmazonClick}
                   size="large"
-                  sx={{  minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: theme => theme.palette.amazon.main}}
+                  sx={{  minWidth: 0, p: 0,  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                 >
-                  <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 40, padding: 5, width: 'auto', display: 'block'}} />
+                  <img src="/images/available_at_amazon.png?ver=2025-10" alt="Available at Amazon" style={{ height:54, width: 'auto', display: 'block'}} />
                 </Button>
                 <Button
                   variant="outlined"
                   color="inherit"
                   onClick={handleGooglePlayClick}
                   size="large"
-                  sx={{ minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                  sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                 >
-                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 40, width: 'auto', display: 'block' }} />
+                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: 55, width: 'auto', display: 'block' }} />
                 </Button>
                 <Button
                   variant="outlined"
                   color="inherit"
                   onClick={handleAppleClick}
                   size="large"
-                  sx={{ minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                  sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                 >
-                  <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ maxHeight: 41, width: 'auto', display: 'block'}} />
+                  <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block'}} />
                 </Button>
                 <Button
                   variant="outlined"
                   color="inherit"
                   onClick={handlePayhipClick}
                   size="large"
-                  sx={{ minWidth: 0, p: 0, height: 40, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                  sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                 >
-                  <img src="/images/payhip-pdf.png" alt="Get the PDF" style={{ maxHeight: 39, width: 'auto', display: 'block', borderRadius: 8 }} />
+                  <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 54, width: 'auto', display: 'block' }} />
                 </Button>
           </Box>
         </Container>

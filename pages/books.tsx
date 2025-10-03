@@ -332,9 +332,9 @@ const Books: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       size="large"
-                      sx={{ minWidth: 0, p: 0, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                      sx={{ minWidth: 0, p: 0,  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                     >
-                    <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ maxHeight: 40, width: 'auto', display: 'block' }} />
+                    <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: 55, width: 'auto', display: 'block' }} />
                     </Button>
                   )}
                   {book.appleUrl && (
@@ -344,9 +344,9 @@ const Books: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       size="large"
-                      sx={{ minWidth: 0, p: 0, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                     >
-                    <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ maxHeight: 50, width: 'auto', display: 'block' }} />
+                    <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block' }} />
                     </Button>
                   )}
                 </div>
@@ -359,7 +359,7 @@ const Books: React.FC = () => {
                     size="large"
                     sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', minWidth: 0 }}
                   >
-                    <img src="/images/available_at_amazon.png" alt="Available at Amazon" style={{ maxHeight: 38, width: 'auto', display: 'block'}} />
+                    <img src="/images/available_at_amazon.png?ver=2025-10" alt="Available at Amazon" style={{ height: 55, width: 'auto', display: 'block'}} />
                   </Button>
                   {book.payHipUrl && (
                     <Button
@@ -368,9 +368,9 @@ const Books: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       size="large"
-                      sx={{ minWidth: 0, p: 0, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
                     >
-                    <img src="/images/payhip-pdf.png" alt="Get the PDF" style={{ maxHeight: 50, width: 'auto', display: 'block' }} />
+                    <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 55, width: 'auto', display: 'block', backgroundColor: '#ccc', borderRadius: 8  }} />
                     </Button>
                   )}
                 </div>
