@@ -70,7 +70,7 @@ export const books: Book[] = [
     title: 'Physician Assistant Protocols',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This book comprises a compendium of practice guides created for physician assistants. Over 290 concise, fast-reading topics for physician assistants working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
-    coverImage: '/images/pa-protocols-2025.jpg',
+    coverImage: '/images/pa-protocols-2025.jpg?ver=2025-10',
     targetAudience: 'physician-assistants',
     amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Emergency-Departments-ebook/dp/B0FBZ56BJW/ref=sr_1_1?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751215199&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-1',
     googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Physician_Assistant_Protoc?id=yMJoEQAAQBAJ&hl=en_US',

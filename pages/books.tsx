@@ -150,41 +150,49 @@ const Books: React.FC = () => {
       </Box>
 
       <Box sx={{ py: 6, px: { xs: 2, sm: 4, md: 8 } }}>
-        {/* Filter Tabs or Dropdown */}
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
-          {selectedFilter === 'book' ? (
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 0 }}>
-              <Button
-                variant="outlined"
-                color="primary"
-                startIcon={<ArrowBackIcon />}
-                onClick={() => {
-                  setSelectedFilter('eBook');
-                  setSelectedBookId('');
-                  router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
-                }}
-                sx={{ maxWidth: 340, my: 2, bgcolor: 'white' }}
-              >
-                Back to all books
-              </Button>
-            </Box>
-          ) : (
-            <Select
-              value={selectedFilter}
-              onChange={handleFilterChange}
-              fullWidth
-              size="small"
-              sx={{ maxWidth: 340, mx: 'auto', my: 2, bgcolor: 'white' }}
-              displayEmpty
-              inputProps={{ 'aria-label': 'Book filter' }}
-            >
-              <MenuItem value={'eBook'}>eBooks</MenuItem>
-              <MenuItem value={'Paper'}>Paper Textbooks</MenuItem>
-            </Select>
-          )}
-        </Box>
+          {/* Filter Tabs or Dropdown */}
+          <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4 }}>
+              {selectedFilter === 'book' ? (
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 0 }}>
+                      <Button
+                          variant="outlined"
+                          color="primary"
+                          startIcon={<ArrowBackIcon />}
+                          onClick={() => {
+                              setSelectedFilter('eBook');
+                              setSelectedBookId('');
+                              router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
+                          }}
+                          sx={{ maxWidth: 340, my: 2, bgcolor: 'white' }}
+                      >
+                          Back to all books
+                      </Button>
+                  </Box>
+              ) : (
+                  <Tabs
+                      value={selectedFilter}
+                      onChange={(_, newValue) => {
+                          setSelectedFilter(newValue);
+                          setSelectedBookId('');
+                          if (newValue === 'eBook') {
+                              router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
+                          } else if (newValue === 'Paper') {
+                              router.replace({ pathname: '/books', query: { paper: true } }, undefined, { shallow: true });
+                          }
+                      }}
+                      textColor="primary"
+                      indicatorColor="primary"
+                      centered={isMobile}
+                      sx={{ bgcolor: 'white', borderRadius: 1 }}
+                  >
+                      <Tab label="eBooks" value="eBook" />
+                      <Tab label="Paper Textbooks" value="Paper" />
+                  </Tabs>
+              )}
+          </Box>
 
-        {/* Books Grid */}
+
+          {/* Books Grid */}
         <Box
           sx={{
             display: 'grid',

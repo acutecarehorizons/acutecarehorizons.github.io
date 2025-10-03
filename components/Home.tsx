@@ -134,7 +134,7 @@ const Home: React.FC = () => {
               textShadow: '0 2px 8px rgba(0,0,0,0.95)',
             }}
           >
-            We strive to supply the best in acute care protocols, disease management and practice guides
+            We strive to supply the best in acute care protocols, disease management, and practice guides
             for Nurse Practitioners and Physician Assistants. Concise and fast-reading resources in a 
             bulleted outline format for family practice, urgent care, and emergency medicine.
           </Typography>
