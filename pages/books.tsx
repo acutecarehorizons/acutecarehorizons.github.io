@@ -346,7 +346,7 @@ const Books: React.FC = () => {
                       size="large"
                       sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
                     >
-                    <img src="/images/apple-badge.svg" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block' }} />
+                    <img src="/images/apple-badge.png" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block' }} />
                     </Button>
                   )}
                 </div>
