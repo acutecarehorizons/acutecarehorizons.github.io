@@ -7,10 +7,10 @@ export interface Book {
   targetAudience: 'nurse-practitioners' | 'physician-assistants' | 'both';
   amazonUrl: string;
   googlePlayUrl?: string;
-  payHipUrl?: string;
   appleUrl?: string;
   features: string[];
   edition: string;
+  kindleUnlimited?: boolean;
 }
 
 export const books: Book[] = [
@@ -40,7 +40,6 @@ export const books: Book[] = [
     targetAudience: 'nurse-practitioners',
     amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Guide-Emergency-Departments-ebook/dp/B0FBJ5PSTT/ref=sr_1_7?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-7',
     googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Nurse_Practitioner_Guide?id=tWN4EQAAQBAJ&hl=en_US',
-    payHipUrl: 'https://payhip.com/b/dvJTC',
     appleUrl: 'https://books.apple.com/us/book/nurse-practitioner-guide/id6751246325',
     features: [
       'Bulleted outline format',
@@ -60,7 +59,6 @@ export const books: Book[] = [
     targetAudience: 'physician-assistants',
     amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Emergency-Departments-ebook/dp/B0FBZ56BJW/ref=sr_1_1?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751215199&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-1',
     googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Physician_Assistant_Protoc?id=yMJoEQAAQBAJ&hl=en_US',
-    payHipUrl: 'https://payhip.com/b/4ZjOR',
     appleUrl: 'https://books.apple.com/us/book/physician-assistant-protocols/id6751246941',
     features: [
       'Bulleted outline format',
@@ -86,7 +84,8 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: 'eBook'
+    edition: 'eBook',
+    kindleUnlimited: true
   },
   {
     id: 'pa-acp-dm-2025',
@@ -103,7 +102,8 @@ export const books: Book[] = [
       'Quick reference guide',
       'Differential diagnosis guidance'
     ],
-    edition: 'eBook'
+    edition: 'eBook',
+    kindleUnlimited: true
   },
   {
     id: 'pa-acp',

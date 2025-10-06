@@ -15,6 +15,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Chip,
 } from '@mui/material';
 import NextLink from 'next/link';
 import { Launch as LaunchIcon, MenuBook as BookIcon } from '@mui/icons-material';
@@ -31,7 +32,7 @@ const getOrCreateVisitorId = () => {
 };
 
 // Helper function to track generic link clicks
-const trackGenericLink = async (linkType: 'amazon' | 'google_play' | 'payhip' | 'apple', destination: string) => {
+const trackGenericLink = async (linkType: 'amazon' | 'google_play' | 'apple', destination: string) => {
   const visitorId = getOrCreateVisitorId();
   const withGeo = localStorage.getItem('cookiesAccepted');
   
@@ -82,13 +83,6 @@ const Home: React.FC = () => {
   const handleAppleClick = async () => {
     const destination = "https://books.apple.com/us/author/donald-c-correll-m-d-facep/id587116964";
     await trackGenericLink('apple', destination);
-    window.open(destination, '_blank', 'noopener,noreferrer');
-  };
-
-  // Handle Payhip button click
-  const handlePayhipClick = async () => {
-    const destination = "https://payhip.com/AcuteCareHorizons";
-    await trackGenericLink('payhip', destination);
     window.open(destination, '_blank', 'noopener,noreferrer');
   };
 
@@ -160,7 +154,7 @@ const Home: React.FC = () => {
                 },
               }}
             >
-              View Our Books
+              View All Books
             </Button>
             <Button
                   variant="outlined"
@@ -189,15 +183,6 @@ const Home: React.FC = () => {
                 >
                   <img src="/images/apple-badge.png" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block'}} />
                 </Button>
-                <Button
-                  variant="outlined"
-                  color="inherit"
-                  onClick={handlePayhipClick}
-                  size="large"
-                  sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
-                >
-                  <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 54, width: 'auto', display: 'block' }} />
-                </Button>
           </Box>
         </Container>
       </Box>
@@ -214,7 +199,7 @@ const Home: React.FC = () => {
             fontWeight: 400,
           }}
         >
-          Acute Care Horizons Books
+          Acute Care Horizons Featured Books
         </Typography>
 
         <Box
@@ -254,6 +239,18 @@ const Home: React.FC = () => {
                 alt={book.title}
               />
               <CardContent sx={{ flexGrow: 1 }}>
+                <Chip
+                    label={book.edition}
+                    color="secondary"
+                    size="small"
+                  />
+                  {book.kindleUnlimited && (
+                    <Chip
+                      label="Kindle Unlimited"
+                      size="small"
+                      sx={{ ml: 1, bgcolor: theme.palette.amazon.main, color: 'white' }}
+                    />
+                  )}
                 <Typography variant="h6" component="h3" gutterBottom 
                   sx={{
                     fontWeight: 500,

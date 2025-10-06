@@ -39,18 +39,6 @@ const Books: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleFilterChange = (event: any) => {
-    const value = event.target.value as string;
-    setSelectedFilter(value);
-    setSelectedBookId('');
-    if (value === 'eBook') {
-      router.replace({ pathname: '/books', query: {} }, undefined, { shallow: true });
-    }
-    else if (value === 'Paper') {
-      router.replace({ pathname: '/books', query: { paper: true } }, undefined, { shallow: true });
-    }
-  };
-
   const filteredBooks = () => {
     if (selectedFilter === 'book' && selectedBookId) {
       return books.filter(book => book.id === selectedBookId);
@@ -246,6 +234,13 @@ const Books: React.FC = () => {
                     size="small"
                     sx={{ ml: 1 }}
                   />
+                  {book.kindleUnlimited && (
+                    <Chip
+                      label="Kindle Unlimited"
+                      size="small"
+                      sx={{ ml: 1, bgcolor: theme.palette.amazon.main, color: 'white' }}
+                    />
+                  )}
                 </Box>
                 
                 <Typography
@@ -348,19 +343,7 @@ const Books: React.FC = () => {
                     <img src="/images/available_at_amazon.png?ver=2025-10" alt="Available at Amazon" style={{ height: 55, width: 'auto', display: 'block'}} />
                   </Button>
                 </div>
-                <div style={{display: 'flex', gap: 10, marginTop: 'auto', justifyContent: 'space-around', padding:3, paddingTop:0, marginLeft:30}}>
-                  {book.payHipUrl && (
-                    <Button
-                      color="inherit"
-                      href={`/link?bookId=${book.id}&linkType=payhip`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      size="large"
-                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
-                    >
-                    <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 55, width: 'auto', display: 'block', backgroundColor: '#ccc', borderRadius: 8  }} />
-                    </Button>
-                  )}
+                <div style={{display: 'flex', gap: 10, marginTop: 'auto', justifyContent: 'space-around', padding:3, paddingTop:0, marginLeft:-168}}>
                   {book.appleUrl && (
                     <Button
                       color="inherit"

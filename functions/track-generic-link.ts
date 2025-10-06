@@ -1,6 +1,6 @@
 interface TrackGenericLinkPayload {
   visitorId?: string;
-  linkType: 'amazon' | 'google_play' | 'payhip' | 'apple';
+  linkType: 'amazon' | 'google_play' | 'apple';
   destination: string;
   withGeo: boolean;
 }
