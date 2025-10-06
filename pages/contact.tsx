@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
               <Box>
                 <Typography
                   component="a"
-                  href="mailto:dccorrell123@outlook.com"
+                  href="mailto:dccorrell133@outlook.com"
                   sx={{
                     fontSize: '1.2rem',
                     color: theme.palette.primary.main,
