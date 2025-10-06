@@ -134,7 +134,7 @@ export default function Analytics() {
       case 'google_play':
         return 'Google Play';
       case 'apple':
-        return 'Appel Books';
+        return 'Apple Books';
       default:
         return linkType;
     }
