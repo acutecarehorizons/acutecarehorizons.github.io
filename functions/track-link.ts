@@ -16,7 +16,7 @@ export interface Env {
     withGeo: boolean;
   }
   
-  export async function onRequestPost(context) {
+  export async function onRequestPost(context: { request: any; env: any; }) {
     const { request, env } = context;
   
     if (request.method !== 'POST') {

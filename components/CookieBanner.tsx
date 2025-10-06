@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 
 async function updateGeo() {
@@ -14,9 +15,10 @@ async function updateGeo() {
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && router.route.indexOf('/link') === -1) {
       setVisible(localStorage.getItem('cookiesAccepted') !== 'true' && localStorage.getItem('cookiesAccepted') !== 'false');
     }
   }, []);
