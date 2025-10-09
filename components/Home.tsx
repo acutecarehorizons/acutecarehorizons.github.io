@@ -385,6 +385,13 @@ const Home: React.FC = () => {
               />
             ))}
           </Box>
+
+          <Box sx={{ textAlign: 'center', mt: 4 }}>
+          
+            <a href="/npace" style={{ textDecoration: 'none' }}>
+              <img style={{ maxWidth: '100%' }} src="/images/npace-2026-conf.jpeg" alt="NPACE 2026 Conferences" />
+            </a>
+          </Box>
         </Container>
       </Box>
     </Box>
