@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
                     },
                   }}
                 >
-                  dccorrell123@outlook.com
+                  dccorrell133@outlook.com
                 </Typography>
               </Box>
             </Box>
