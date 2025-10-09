@@ -92,7 +92,7 @@ const Home: React.FC = () => {
       <Box
         sx={{
           backgroundImage:
-            'url(/images/horizon-bg-jpg.jpg)',
+            'url(/images/horizon-bg-jpg.jpg?ver=2025-10)',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
