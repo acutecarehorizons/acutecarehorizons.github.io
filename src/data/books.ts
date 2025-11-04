@@ -189,6 +189,23 @@ export const books: Book[] = [
       'Educational resource for providers'
     ],
     edition: 'eBook'
+  },
+  {
+    id: 'pa-acp-dm',
+    title: 'Physician Assistant Acute Care Protocols and Disease Management',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
+    description: 'This is a compendium of acute care protocols and disease management guides created for the Physician Assistant. Over 290 concise, fast-reading protocols and disease management sections for Physician Assistants working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format for the purpose of furthering the relationship between the Physician Assistant and the Physician and for improving patient care and safety.',
+    coverImage: '/images/pa-acp-dm-small.png',
+    targetAudience: 'physician-assistants',
+    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Disease-Management/dp/1737738945/ref=sr_1_1?crid=2ZHJEUV9IOX8R&dib=eyJ2IjoiMSJ9.ULktxdCHC1dMqQDfry6sJp-cAajZYYpybQctIHIgVHNmxVCBxYr8beG811dGD9E_x5VSqM_umBRNuI__wc9xJQ.aBclEarH-1GjsagYYNiPcBDBKhittYlTw2CniUPrYlQ&dib_tag=se&keywords=donald+correll+physician+assistant+acute+care+protocols+disease+management&qid=1762264151&sprefix=donald+correll+physician+assistant+acute+care+protocols+disease+management%2Caps%2C177&sr=8-1',
+    features: [
+      'Bulleted outline format',
+      'Evidence-based information',
+      'Up-to-date clinical guidelines',
+      'Quick reference guide',
+      'Differential diagnosis guidance'
+    ],
+    edition: 'Paper'
   }
 ];
 
