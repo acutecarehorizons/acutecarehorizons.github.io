@@ -266,6 +266,60 @@ const Home: React.FC = () => {
                   View Details
                 </Button>
               </CardActions>
+              <CardActions sx={{ p: 3, pt: 0, mt: 'auto', gap: 2, display: 'flex', flexDirection:'column', justifyContent: 'space-around', scale: {xs: '.65', md: '.8', lg: '.8'}}}>
+                <div style={{display: 'flex', gap: 10, marginTop: 'auto', justifyContent: 'space-around', padding:3, paddingTop:0}}>
+                  {book.googlePlayUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=google`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
+                    >
+                    <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: 55, width: 'auto', display: 'block' }} />
+                    </Button>
+                  )}
+                  {book.amazonUrl && (
+                    <Button
+                      color="secondary"
+                      href={`/link?bookId=${book.id}&linkType=amazon`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    size="large"
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
+                  >
+                    <img src="/images/available_at_amazon.png?ver=2025-10" alt="Available at Amazon" style={{ height: 55, width: 'auto', display: 'block'}} />
+                  </Button>
+                )}
+                  {book.payHipUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=payhip`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
+                    >
+                    <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 55, width: 'auto', display: 'block', backgroundColor: '#ccc', borderRadius: 8  }} />
+                    </Button>
+                  )}
+                </div>
+                <div style={{display: 'flex', gap: 10, marginTop: 'auto', justifyContent: 'space-around', padding:3, paddingTop:0, marginLeft:-168}}>
+                  {book.appleUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=apple`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
+                    >
+                    <img src="/images/apple-badge.png" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block' }} />
+                    </Button>
+                  )}
+                </div>
+              </CardActions>
             </Card>
           ))}
         </Box>
