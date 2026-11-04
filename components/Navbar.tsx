@@ -125,20 +125,6 @@ const Navbar: React.FC = () => {
               Acute Care Horizons
             </Typography>
           </Box>
-          <Link
-              component={NextLink}
-              href="/npace"
-              passHref
-              sx={{
-                color: theme.palette.primary.main,
-                textDecoration: 'none',
-                fontSize: '.8em',
-                float: 'left',
-                flexGrow: { xs: 1, md: 0 },
-              }}
-            >
-              NPACE 2026 Conferences: {isMobile ? (<br></br>) : ''} Open for Registration!
-            </Link>
           {isMobile ? (
             <IconButton
               color="inherit"
