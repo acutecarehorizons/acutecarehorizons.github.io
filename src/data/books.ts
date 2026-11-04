@@ -102,6 +102,40 @@ export const cancelledBooks: Book[] = [
       'Differential diagnosis guidance'
     ],
     edition: 'Paper'
+  },
+  {
+    id: 'pa-ped-acp-2025',
+    title: 'Physician Assistant Pediatric Acute Care Protocols',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
+    description: 'This book comprises a compendium of pediatric acute care protocols created for physician assistants. Concise, fast-reading topics for physician assistants working in emergency medicine, urgent care and family practice. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
+    coverImage: '/images/pa-ped-acp-2025.jpg',
+    targetAudience: 'physician-assistants',
+    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Pediatric-Acute-Protocols-ebook/dp/B0FBKPB2PF/ref=sr_1_3?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-3',
+    features: [
+      'Bulleted outline format',
+      'Evidence-based information',
+      'Up-to-date clinical guidelines',
+      'Quick reference guide',
+      'Differential diagnosis guidance'
+    ],
+    edition: 'eBook'
+  },
+  {
+    id: 'ac-bedside-us-2025',
+    title: 'Acute Care Bedside Ultrasound',
+    subtitle: 'Made Simpler',
+    description: 'These are some representative emergency department bedside ultrasounds performed by the author over a 10 year period. The ultrasounds presented are to assist the medical provider with an introduction to bedside acute ultrasound. They are limited and are not a replacement for formal in-depth complete ultrasounds performed by trained personnel and read by radiologist.',
+    coverImage: '/images/ac-bedside-us-2025.jpg',
+    targetAudience: 'both',
+    amazonUrl: 'https://www.amazon.com/Acute-Care-Bedside-Ultrasound-Simpler-ebook/dp/B0FBJLG4GG/ref=sr_1_6?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-6',
+    googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Acute_Care_Bedside_Ultraso?id=CMNoEQAAQBAJ&hl=en_US',
+    features: [
+      'Introduction to bedside ultrasound',
+      'Representative emergency department cases',
+      'Not a replacement for formal ultrasound',
+      'Educational resource for providers'
+    ],
+    edition: 'eBook'
   }
 ]
 export const books: Book[] = [
@@ -176,40 +210,6 @@ export const books: Book[] = [
       'Discharge criteria focus'
     ],
     edition: 'Paper'
-  },
-  {
-    id: 'pa-ped-acp-2025',
-    title: 'Physician Assistant Pediatric Acute Care Protocols',
-    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
-    description: 'This book comprises a compendium of pediatric acute care protocols created for physician assistants. Concise, fast-reading topics for physician assistants working in emergency medicine, urgent care and family practice. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
-    coverImage: '/images/pa-ped-acp-2025.jpg',
-    targetAudience: 'physician-assistants',
-    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Pediatric-Acute-Protocols-ebook/dp/B0FBKPB2PF/ref=sr_1_3?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-3',
-    features: [
-      'Bulleted outline format',
-      'Evidence-based information',
-      'Up-to-date clinical guidelines',
-      'Quick reference guide',
-      'Differential diagnosis guidance'
-    ],
-    edition: 'eBook'
-  },
-  {
-    id: 'ac-bedside-us-2025',
-    title: 'Acute Care Bedside Ultrasound',
-    subtitle: 'Made Simpler',
-    description: 'These are some representative emergency department bedside ultrasounds performed by the author over a 10 year period. The ultrasounds presented are to assist the medical provider with an introduction to bedside acute ultrasound. They are limited and are not a replacement for formal in-depth complete ultrasounds performed by trained personnel and read by radiologist.',
-    coverImage: '/images/ac-bedside-us-2025.jpg',
-    targetAudience: 'both',
-    amazonUrl: 'https://www.amazon.com/Acute-Care-Bedside-Ultrasound-Simpler-ebook/dp/B0FBJLG4GG/ref=sr_1_6?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-6',
-    googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Acute_Care_Bedside_Ultraso?id=CMNoEQAAQBAJ&hl=en_US',
-    features: [
-      'Introduction to bedside ultrasound',
-      'Representative emergency department cases',
-      'Not a replacement for formal ultrasound',
-      'Educational resource for providers'
-    ],
-    edition: 'eBook'
   }
 ];
 
