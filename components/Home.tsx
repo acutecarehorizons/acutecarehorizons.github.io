@@ -67,7 +67,7 @@ const Home: React.FC = () => {
 
   // Handle Amazon button click
   const handleAmazonClick = async () => {
-    const destination = "https://www.amazon.com/s?k=facep+%22Donald+Correll%22&i=stripbooks&crid=1BZ63E10N2YII&sprefix=facep+donald+correll+%2Cstripbooks%2C424&ref=nb_sb_noss";
+    const destination = "https://www.amazon.com/s?i=stripbooks&rh=p_27%3ADonald%2BC%2BCorrell%257CDonald%2BCorrell%2BMD%2BFACEP%2Cp_n_condition-type%3A1294423011%2Cp_6%3AATVPDKIKX0DER&s=relevancerank&Adv-Srch-Books-Submit.x=18&Adv-Srch-Books-Submit.y=5&unfiltered=1&ref=sr_adv_b";
     await trackGenericLink('amazon', destination);
     window.open(destination, '_blank', 'noopener,noreferrer');
   };
@@ -156,33 +156,6 @@ const Home: React.FC = () => {
             >
               View All Books
             </Button>
-            <Button
-                  variant="outlined"
-                  color="inherit"
-                  onClick={handleAmazonClick}
-                  size="large"
-                  sx={{  minWidth: 0, p: 0,  display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
-                >
-                  <img src="/images/available_at_amazon.png?ver=2025-10" alt="Available at Amazon" style={{ height:54, width: 'auto', display: 'block'}} />
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="inherit"
-                  onClick={handleGooglePlayClick}
-                  size="large"
-                  sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
-                >
-                  <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: 55, width: 'auto', display: 'block' }} />
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="inherit"
-                  onClick={handleAppleClick}
-                  size="large"
-                  sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent', border: 'none' }}
-                >
-                  <img src="/images/apple-badge.png" alt="Get it on Apple Books" style={{ height: 55, width: 'auto', display: 'block'}} />
-                </Button>
           </Box>
         </Container>
       </Box>

@@ -15,7 +15,7 @@ export interface Book {
   kindleUnlimited?: boolean;
 }
 
-export const books: Book[] = [
+export const cancelledBooks: Book[] = [
   {
     id: 'np-acp',
     title: 'Nurse Practitioner Acute Care Protocols',
@@ -33,6 +33,78 @@ export const books: Book[] = [
     ],
     edition: 'Paper'
   },
+  {
+    id: 'np-acp-dm-2025',
+    title: 'Nurse Practitioner Acute Care Protocols and Disease Management',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
+    description: 'This is a compendium of acute care protocols and disease management guides created for the Nurse Practitioner. Over 290 concise, fast-reading protocols and disease management sections for Nurse Practitioners working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format, for the purpose of furthering the relationship between the Nurse Practitioner and the Physician and for improving patient care and safety.',
+    coverImage: '/images/np-acp-dm-2025.jpg',
+    targetAudience: 'nurse-practitioners',
+    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Protocols-Disease-Management-ebook/dp/B0FBKJ8F3X/ref=sr_1_5?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-5',
+    features: [
+      'Bulleted outline format',
+      'Evidence-based information',
+      'Up-to-date clinical guidelines',
+      'Quick reference guide',
+      'Differential diagnosis guidance'
+    ],
+    edition: 'eBook',
+    kindleUnlimited: true
+  },
+  {
+    id: 'pa-acp-dm-2025',
+    title: 'Physician Assistant Acute Care Protocols and Disease Management',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
+    description: 'This eBook is a compendium of acute care protocols and disease management guides created for the Physician Assistant. Over 290 concise, fast-reading protocols and disease management sections for Physician Assistants working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format for the purpose of furthering the relationship between the Nurse Practitioner and the Physician and for improving patient care and safety.',
+    coverImage: '/images/pa-acp-dm-2025.jpg',
+    targetAudience: 'physician-assistants',
+    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Disease-Management-ebook/dp/B0FBML85HZ/ref=sr_1_2?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751215199&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-2',
+    features: [
+      'Bulleted outline format',
+      'Evidence-based information',
+      'Up-to-date clinical guidelines',
+      'Quick reference guide',
+      'Differential diagnosis guidance'
+    ],
+    edition: 'eBook',
+    kindleUnlimited: true
+  },
+  {
+    id: 'np-ped-acp-2025',
+    title: 'Nurse Practitioner Pediatric Acute Care Protocols',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
+    description: 'This book comprises a compendium of pediatric acute care created for nurse practitioners. Concise, fast-reading topics for nurse practitioners working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, HEENT, trauma, pediatrics, infectious disease, dermatology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
+    coverImage: '/images/np-ped-acp-2025.jpg',
+    targetAudience: 'nurse-practitioners',
+    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Pediatric-Acute-Protocols-ebook/dp/B0FBKKJRMY/ref=sr_1_4?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-4',
+    features: [
+      'Bulleted outline format',
+      'Evidence-based information',
+      'Up-to-date clinical guidelines',
+      'Quick reference guide',
+      'Differential diagnosis guidance'
+    ],
+    edition: 'eBook'
+  },
+  {
+    id: 'pa-acp-dm',
+    title: 'Physician Assistant Acute Care Protocols and Disease Management',
+    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
+    description: 'This is a compendium of acute care protocols and disease management guides created for the Physician Assistant. Over 290 concise, fast-reading protocols and disease management sections for Physician Assistants working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format for the purpose of furthering the relationship between the Physician Assistant and the Physician and for improving patient care and safety.',
+    coverImage: '/images/pa-acp-dm-small.png',
+    targetAudience: 'physician-assistants',
+    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Disease-Management/dp/1737738945/ref=sr_1_1?crid=2ZHJEUV9IOX8R&dib=eyJ2IjoiMSJ9.ULktxdCHC1dMqQDfry6sJp-cAajZYYpybQctIHIgVHNmxVCBxYr8beG811dGD9E_x5VSqM_umBRNuI__wc9xJQ.aBclEarH-1GjsagYYNiPcBDBKhittYlTw2CniUPrYlQ&dib_tag=se&keywords=donald+correll+physician+assistant+acute+care+protocols+disease+management&qid=1762264151&sprefix=donald+correll+physician+assistant+acute+care+protocols+disease+management%2Caps%2C177&sr=8-1',
+    features: [
+      'Bulleted outline format',
+      'Evidence-based information',
+      'Up-to-date clinical guidelines',
+      'Quick reference guide',
+      'Differential diagnosis guidance'
+    ],
+    edition: 'Paper'
+  }
+]
+export const books: Book[] = [
   {
     id: 'np-guide-2026',
     title: 'Nurse Practitioner Practice Guide',
@@ -72,42 +144,6 @@ export const books: Book[] = [
     edition: 'eBook'
   },
   {
-    id: 'np-acp-dm-2025',
-    title: 'Nurse Practitioner Acute Care Protocols and Disease Management',
-    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
-    description: 'This is a compendium of acute care protocols and disease management guides created for the Nurse Practitioner. Over 290 concise, fast-reading protocols and disease management sections for Nurse Practitioners working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format, for the purpose of furthering the relationship between the Nurse Practitioner and the Physician and for improving patient care and safety.',
-    coverImage: '/images/np-acp-dm-2025.jpg',
-    targetAudience: 'nurse-practitioners',
-    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Protocols-Disease-Management-ebook/dp/B0FBKJ8F3X/ref=sr_1_5?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-5',
-    features: [
-      'Bulleted outline format',
-      'Evidence-based information',
-      'Up-to-date clinical guidelines',
-      'Quick reference guide',
-      'Differential diagnosis guidance'
-    ],
-    edition: 'eBook',
-    kindleUnlimited: true
-  },
-  {
-    id: 'pa-acp-dm-2025',
-    title: 'Physician Assistant Acute Care Protocols and Disease Management',
-    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
-    description: 'This eBook is a compendium of acute care protocols and disease management guides created for the Physician Assistant. Over 290 concise, fast-reading protocols and disease management sections for Physician Assistants working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format for the purpose of furthering the relationship between the Nurse Practitioner and the Physician and for improving patient care and safety.',
-    coverImage: '/images/pa-acp-dm-2025.jpg',
-    targetAudience: 'physician-assistants',
-    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Disease-Management-ebook/dp/B0FBML85HZ/ref=sr_1_2?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751215199&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-2',
-    features: [
-      'Bulleted outline format',
-      'Evidence-based information',
-      'Up-to-date clinical guidelines',
-      'Quick reference guide',
-      'Differential diagnosis guidance'
-    ],
-    edition: 'eBook',
-    kindleUnlimited: true
-  },
-  {
     id: 'pa-acp',
     title: 'Physician Assistant Acute Care Protocols',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
@@ -142,23 +178,6 @@ export const books: Book[] = [
     edition: 'Paper'
   },
   {
-    id: 'np-ped-acp-2025',
-    title: 'Nurse Practitioner Pediatric Acute Care Protocols',
-    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
-    description: 'This book comprises a compendium of pediatric acute care created for nurse practitioners. Concise, fast-reading topics for nurse practitioners working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, HEENT, trauma, pediatrics, infectious disease, dermatology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
-    coverImage: '/images/np-ped-acp-2025.jpg',
-    targetAudience: 'nurse-practitioners',
-    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Pediatric-Acute-Protocols-ebook/dp/B0FBKKJRMY/ref=sr_1_4?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-4',
-    features: [
-      'Bulleted outline format',
-      'Evidence-based information',
-      'Up-to-date clinical guidelines',
-      'Quick reference guide',
-      'Differential diagnosis guidance'
-    ],
-    edition: 'eBook'
-  },
-  {
     id: 'pa-ped-acp-2025',
     title: 'Physician Assistant Pediatric Acute Care Protocols',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
@@ -191,23 +210,6 @@ export const books: Book[] = [
       'Educational resource for providers'
     ],
     edition: 'eBook'
-  },
-  {
-    id: 'pa-acp-dm',
-    title: 'Physician Assistant Acute Care Protocols and Disease Management',
-    subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
-    description: 'This is a compendium of acute care protocols and disease management guides created for the Physician Assistant. Over 290 concise, fast-reading protocols and disease management sections for Physician Assistants working in family practice, urgent care, and emergency medicine. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental, medications, and disease management, among others. Also includes an Acute Care Ultrasound Chapter. The book provides differential diagnosis, pertinent central clinical facts, and practice guidance in a bulleted outline format for the purpose of furthering the relationship between the Physician Assistant and the Physician and for improving patient care and safety.',
-    coverImage: '/images/pa-acp-dm-small.png',
-    targetAudience: 'physician-assistants',
-    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Disease-Management/dp/1737738945/ref=sr_1_1?crid=2ZHJEUV9IOX8R&dib=eyJ2IjoiMSJ9.ULktxdCHC1dMqQDfry6sJp-cAajZYYpybQctIHIgVHNmxVCBxYr8beG811dGD9E_x5VSqM_umBRNuI__wc9xJQ.aBclEarH-1GjsagYYNiPcBDBKhittYlTw2CniUPrYlQ&dib_tag=se&keywords=donald+correll+physician+assistant+acute+care+protocols+disease+management&qid=1762264151&sprefix=donald+correll+physician+assistant+acute+care+protocols+disease+management%2Caps%2C177&sr=8-1',
-    features: [
-      'Bulleted outline format',
-      'Evidence-based information',
-      'Up-to-date clinical guidelines',
-      'Quick reference guide',
-      'Differential diagnosis guidance'
-    ],
-    edition: 'Paper'
   }
 ];
 
