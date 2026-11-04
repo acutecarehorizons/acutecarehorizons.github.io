@@ -332,16 +332,30 @@ const Books: React.FC = () => {
                     <img src="/images/google-play-badge.png" alt="Get it on Google Play" style={{ height: 55, width: 'auto', display: 'block' }} />
                     </Button>
                   )}
-                  <Button
-                    color="secondary"
-                    href={`/link?bookId=${book.id}&linkType=amazon`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  {book.amazonUrl && (
+                    <Button
+                      color="secondary"
+                      href={`/link?bookId=${book.id}&linkType=amazon`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     size="large"
                       sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
                   >
                     <img src="/images/available_at_amazon.png?ver=2025-10" alt="Available at Amazon" style={{ height: 55, width: 'auto', display: 'block'}} />
                   </Button>
+                )}
+                  {book.payHipUrl && (
+                    <Button
+                      color="inherit"
+                      href={`/link?bookId=${book.id}&linkType=payhip`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="large"
+                      sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
+                    >
+                    <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 55, width: 'auto', display: 'block', backgroundColor: '#ccc', borderRadius: 8  }} />
+                    </Button>
+                  )}
                 </div>
                 <div style={{display: 'flex', gap: 10, marginTop: 'auto', justifyContent: 'space-around', padding:3, paddingTop:0, marginLeft:-168}}>
                   {book.appleUrl && (

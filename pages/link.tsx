@@ -57,9 +57,10 @@ export default function LinkRedirect() {
 
     let destination: string | null = null;
     if (book) {
-      if (linkType === 'amazon') destination = book.amazonUrl;
+      if (linkType === 'amazon') destination = book.amazonUrl || null;
       if (linkType === 'google') destination = book.googlePlayUrl || null;
       if (linkType === 'apple') destination = book.appleUrl || null;
+      if (linkType === 'payhip') destination = book.payHipUrl || null;
     }
 
     if (destination) {

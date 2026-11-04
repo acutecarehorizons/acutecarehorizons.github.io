@@ -5,8 +5,10 @@ export interface Book {
   description: string;
   coverImage: string;
   targetAudience: 'nurse-practitioners' | 'physician-assistants' | 'both';
-  amazonUrl: string;
+  amazonUrl?: string;
+  amazonUrlDead?: string;
   googlePlayUrl?: string;
+  payHipUrl?: string;
   appleUrl?: string;
   features: string[];
   edition: string;
@@ -32,15 +34,15 @@ export const books: Book[] = [
     edition: 'Paper'
   },
   {
-    id: 'np-guide-2025',
-    title: 'Nurse Practitioner Guide',
+    id: 'np-guide-2026',
+    title: 'Nurse Practitioner Practice Guide',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This book comprises a compendium of practice guides created for nurse practitioners. Over 290 concise, fast-reading topics for nurse practitioners working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline, double column format for improving patient care and safety.',
-    coverImage: '/images/np-pg_small.jpg',
+    coverImage: '/images/np-pg_small.jpg?ver=2026-11',
     targetAudience: 'nurse-practitioners',
-    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Guide-Emergency-Departments-ebook/dp/B0FBJ5PSTT/ref=sr_1_7?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751216561&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-7',
-    googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Nurse_Practitioner_Guide?id=tWN4EQAAQBAJ&hl=en_US',
-    appleUrl: 'https://books.apple.com/us/book/nurse-practitioner-guide/id6751246325',
+    amazonUrlDead: '<needlink>',
+    googlePlayUrl: 'https://play.google.com/store/books/details/Donald_C_Correll_M_D_The_Nurse_Practitioner_Practi?id=INcjEgAAQBAJ&hl=en_US',
+    payHipUrl: 'https://payhip.com/b/TP4ym',
     features: [
       'Bulleted outline format',
       'Evidence-based information',
@@ -51,15 +53,15 @@ export const books: Book[] = [
     edition: 'eBook'
   },
   {
-    id: 'pa-protocols-2025',
-    title: 'Physician Assistant Protocols',
+    id: 'pa-protocols-2027',
+    title: 'Physician Assistant Acute Care Protocols',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This book comprises a compendium of practice guides created for physician assistants. Over 290 concise, fast-reading topics for physician assistants working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
-    coverImage: '/images/pa-protocols-2025.jpg?ver=2025-10',
+    coverImage: '/images/pa-protocols.jpg?ver=2026-101',
     targetAudience: 'physician-assistants',
-    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Protocols-Emergency-Departments-ebook/dp/B0FBZ56BJW/ref=sr_1_1?crid=2STTEOURHIBFE&dib=eyJ2IjoiMSJ9.pSnJlTRT4S_hLL0L4ne6_8ArFzC7yH-p1zBMUvHDacG1lsP81xIF4GbPArnoG-HC890Hguz5jSt39KLU7AteBimsWgapCmt0idN9RvoAmTM.aJHD8XXC70RaBIgx4SPtkwBb638GGUKyAuFD42lBrN0&dib_tag=se&keywords=FACEP+Donald+Correll&qid=1751215199&s=books&sprefix=facepdonald+correll%2Cstripbooks%2C367&sr=1-1',
-    googlePlayUrl: 'https://play.google.com/store/books/details/Donald_Correll_MD_FACEP_Physician_Assistant_Protoc?id=yMJoEQAAQBAJ&hl=en_US',
-    appleUrl: 'https://books.apple.com/us/book/physician-assistant-protocols/id6751246941',
+    amazonUrlDead: '<needlink>',
+    googlePlayUrl: 'https://play.google.com/store/books/details/Donald_C_Correll_M_D_Physician_Assistant_Acute_Car?id=r9kjEgAAQBAJ&hl=en_US',
+    payHipUrl: 'https://payhip.com/b/zmZH4',
     features: [
       'Bulleted outline format',
       'Evidence-based information',
@@ -110,9 +112,9 @@ export const books: Book[] = [
     title: 'Physician Assistant Acute Care Protocols',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'Essential acute care protocols tailored for physician assistants. Provides foundational information and serves as a valuable resource for both recent graduates and experienced practitioners.',
-    coverImage: '/images/paacp-front_small.png',
+    coverImage: '/images/pa-protocols.jpg?ver=2026-11',
     targetAudience: 'physician-assistants',
-    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Acute-Care-Protocols/dp/1737738902/ref=sr_1_1?crid=2O5EN22UO0T2C&dib=eyJ2IjoiMSJ9.Bm0HkwXR7nmOeeR3-9l8_A.D_3X0a5v_5IucRTi3gGcFRcrKYFjCIzstNLY0Ia5-0s&dib_tag=se&keywords=%22Physician+Assistant+Acute+Care+Protocols+-+SIXTH+EDITION%22+%22Donald+Correll%22&qid=1759593447&s=books&sprefix=physician+assistant+acute+care+protocols+-+sixth+edition+donald+correll+%2Cstripbooks%2C297&sr=1-1',
+    amazonUrl: 'https://www.amazon.com/Physician-Assistant-Acute-Care-Protocols/dp/B0HP3DY4YY?ref_=ast_author_dp_rw&th=1&psc=1&dib=eyJ2IjoiMSJ9.MAcG85enagIgC4nutu8WAgu2_6vSuvvLGghX-uUbjPqkWjpoBFVOYqc_2XHKXvji0vrzrxDDBSJzaQSC0-G9rllUCgPFh0yyn-4dSbRXkDeaPgh89XvZlVGG7OaJky4g9MHZivXGfvjVn_4kRhtuPSy0EVrziN5Smy8_AxugaPAD23kGnUW2uS4wPQt0T6w3eGVdyVCPkLBiy5qQVr9HUvkGhzz3-z2se_bWhFPWbF8.NLnymwhQCaO_LJtgwCb5e1czMUAwL19cErOmH9fEqS4&dib_tag=AUTHOR',
     features: [
       'Well-organized and easy to follow',
       'Treatment and diagnosis guidance',
@@ -127,9 +129,9 @@ export const books: Book[] = [
     title: 'Nurse Practitioner Practice Guide',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'A comprehensive practice guide that helps direct diagnosis, treatment and details criteria for either admission/discharge or further consultation. An important "go-to" text for day-to-day practice.',
-    coverImage: '/images/np-pg_small.png?ver=2025-09',
+    coverImage: '/images/np-pg_small.png?ver=2026-11',
     targetAudience: 'nurse-practitioners',
-    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Guide-Donald-Correll/dp/1737738988/ref=mp_s_a_1_1?crid=28VBTJPQXN8RS&dib=eyJ2IjoiMSJ9.7hef00Ew-kiR6lXtkdWS87e0D0LcM_1GUh5nA7qK-cAdAlQ4zl7cYND--mwI7Ge81ost08_voAI2o4JRiRInR8V7SXM9JCQRUm-ZoRDucw7dvBSGTmdVCm9SJ130KNt75WM_1aYW4Dco7pxsDbSnZqfSwUws__Nfu9Kw6WZnoqAzfm-VZYjCr50XbiUZGTadII5VQ0w78-S_Ad19sDU8EQ.20YVetcxc_P1DniXudPnHKqA2PIOJEfV7SxXZdNAQWA&dib_tag=se&keywords=nurse+practitioner+guide+donald+correll&qid=1758745440&sprefix=donald+correll+%2Caps%2C129&sr=8-1',
+    amazonUrl: 'https://www.amazon.com/Nurse-Practitioner-Practice-Guide/dp/B0HP47GPQK?ref_=ast_author_dp_rw&th=1&psc=1&dib=eyJ2IjoiMSJ9.MAcG85enagIgC4nutu8WAgu2_6vSuvvLGghX-uUbjPqkWjpoBFVOYqc_2XHKXvji0vrzrxDDBSJzaQSC0-G9rllUCgPFh0yyn-4dSbRXkDeaPgh89XvZlVGG7OaJky4g9MHZivXGfvjVn_4kRhtuPSy0EVrziN5Smy8_AxugaPAD23kGnUW2uS4wPQt0T6w3eGVdyVCPkLBiy5qQVr9HUvkGhzz3-z2se_bWhFPWbF8.NLnymwhQCaO_LJtgwCb5e1czMUAwL19cErOmH9fEqS4&dib_tag=AUTHOR',
     features: [
       'Day-to-day practice guidance',
       'Readable font and format',
