@@ -53,7 +53,7 @@ export const books: Book[] = [
     edition: 'eBook'
   },
   {
-    id: 'pa-protocols-2027',
+    id: 'pa-protocols-2026',
     title: 'Physician Assistant Acute Care Protocols',
     subtitle: 'For Emergency Departments, Urgent Care Centers, and Family Practices',
     description: 'This book comprises a compendium of practice guides created for physician assistants. Over 290 concise, fast-reading topics for physician assistants working in emergency medicine, urgent care and family practice. Covers cardiovascular, respiratory, endocrine, toxicology, neurology, musculoskeletal, gastrointestinal, general surgery, genitourinary disorders, electrolyte and acid/base disturbances, HEENT, trauma, pediatrics, geriatrics, gynecology, infectious disease, dermatology, hematology, psychiatric and social, environmental emergencies, and critical care, among others. The book provides differential diagnosis, pertinent clinical facts, and practice guidance in a bulleted outline format for improving patient care and safety.',
