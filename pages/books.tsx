@@ -353,7 +353,7 @@ const Books: React.FC = () => {
                       size="large"
                       sx={{ minWidth: 0, p: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent'}}
                     >
-                    <img src="/images/payhip-pdf.png?ver=2025-10" alt="Get the PDF" style={{ height: 55, width: 'auto', display: 'block', backgroundColor: '#ccc', borderRadius: 8  }} />
+                    <img src="/images/payhip-pdf.png?ver=2026-11" alt="Get the PDF" style={{ height: 55, width: 'auto', display: 'block', backgroundColor: '#ccc', borderRadius: 8  }} />
                     </Button>
                   )}
                 </div>
